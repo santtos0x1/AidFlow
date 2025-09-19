@@ -1,0 +1,45 @@
+{% include "tickets/partials/head/head-detail.html" %}
+{% load tz %}
+
+<body>
+    {% include "global/header.html" %}
+    <main class="detail-container">
+        <div class="ticket-detail">
+            <div class="ticket-header">
+                <h1 class="ticket-title">{{ ticket.title }}</h1>
+                <div class="ticket-badges">
+                    <span class="badge status {{ ticket.status|lower }}">{{ ticket.status }}</span>
+                    <span class="badge priority {{ ticket.priority|lower }}">{{ ticket.priority }}</span>
+                    <span class="badge category">{{ ticket.category }}</span>
+                </div>
+            </div>
+
+            <div class="ticket-content">
+                <h2 class="section-title">Description</h2>
+                <div class="description">
+                    {{ ticket.description }}
+                </div>
+            </div>
+
+            <div class="ticket-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Creation Date</span>
+                    <span class="meta-value">{{ ticket.creation_date|localtime|date:"M d, Y" }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Created By</span>
+                    <span class="meta-value">{{ ticket.created_by.username }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Last Updated</span>
+                    <span class="meta-value">{{ ticket.updated_at|localtime|date:"M d, Y h:i A" }}</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-secondary">Edit Ticket</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
