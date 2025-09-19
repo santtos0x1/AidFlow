@@ -119,7 +119,6 @@ The application will be available at `http://127.0.0.1:8000/`
 | GET | `/ticket/<uuid>/` | Ticket detail view |
 | GET | `/ticket/<uuid>/edit/` | Edit ticket form |
 | POST | `/ticket/<uuid>/edit/` | Update ticket |
-| GET | `/ticket/new/` | New ticket form |
 | POST | `/ticket/new/` | Create new ticket |
 
 ## Contributing
