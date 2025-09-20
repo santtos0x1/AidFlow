@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('ticket/<uuid:uuid>/', views.details, name='detail'),
     path('ticket/new/', views.new_ticket, name='new'),
-    path('ticket/<uuid:uuid>/edit', views.edit_ticket, name='edit')
+    path('ticket/<uuid:uuid>/edit', views.edit_ticket, name='edit'),
+    path('ticket/search/', views.search_ticket, name='search')
 ]

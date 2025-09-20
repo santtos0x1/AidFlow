@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-from .forms import TicketCreateForm, TicketEditForm
+from .forms import TicketCreateForm, TicketEditForm, SearchTicketForm
 
 def home(request):
     return render(request, 'tickets/pages/home.html', {"tickets" : Ticket.objects.all().order_by('-id')})
@@ -35,3 +35,12 @@ def new_ticket(request):
     
     return render(request, 'tickets/pages/new-ticket.html', {'form': form})
 
+def search_ticket(request):
+    query = request.GET.get('q', '')
+    if query:
+        tickets = Ticket.objects.filter(title__icontains=query)
+    else:
+        tickets = Ticket.objects.all()
+        
+    return render(request, 'tickets/pages/search.html', {'tickets': tickets})
+    

@@ -22,3 +22,8 @@ class TicketEditForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['category'].empty_label = ""
         self.fields['priority'].empty_label = ""
+        
+class SearchTicketForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = ['title']
