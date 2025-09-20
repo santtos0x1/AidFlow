@@ -11,6 +11,7 @@ body {
 	height: 100vh;
 }
 
+
 .ticket-detail {
 	background: white;
 	border: 1px solid var(--border);
@@ -50,8 +51,6 @@ body {
 .btn {
 	padding: 0.8rem 1.5rem;
     margin-top: 1rem;
-	background: var(--accent);
-	color: white;
     border: none;
     border-radius: 6px;
     font-size: 0.9rem;
@@ -64,13 +63,28 @@ body {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
     position: relative;
     overflow: hidden;
     transform: none !important;
 }
 
-.btn:hover {
+.btn-primary {
+	background: var(--surface);
+	color: var(--text);
+	margin-right: 1rem;
+}
+
+.btn-primary:hover {
+	background: var(--border);
+}
+
+
+.btn-secondary {
+	background: var(--accent);
+	color: white;
+}
+
+.btn-secondary:hover {
 	background: var(--header);
 }
 

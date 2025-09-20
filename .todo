@@ -2,29 +2,15 @@
   "todotree": {
     "tree": [
       {
-        "key": 1758371390686,
+        "key": 1758375107498,
         "children": [],
         "todo": {
-          "content": "corrigir a barra de rolagem da tela home que esta duplicada, e dar uma melhorada na aparencia das outras barras de rolagem",
-          "id": 1758371390686,
-          "level": "danger",
-          "done": true,
-          "start": 1758371390686,
-          "focus": false,
-          "end": 1758373473386
-        }
-      },
-      {
-        "key": 1758371376997,
-        "children": [],
-        "todo": {
-          "content": "corrigir as fontes de todo o site",
-          "id": 1758371376997,
-          "level": "danger",
-          "done": true,
-          "start": 1758371376997,
-          "focus": false,
-          "end": 1758373467673
+          "content": "adicionar uma barra de pesquisa que leva para outra pagina apenas com os tickets encontrados da pesquisa da barra de pesquisa",
+          "id": 1758375107498,
+          "level": "default",
+          "done": false,
+          "start": 1758375107498,
+          "focus": true
         }
       },
       {
@@ -36,19 +22,6 @@
           "level": "default",
           "done": false,
           "start": 1758320834745
-        }
-      },
-      {
-        "key": 1758320857669,
-        "children": [],
-        "todo": {
-          "content": "adicionar a funcionalidade de atualizar o ticket",
-          "id": 1758320857669,
-          "level": "default",
-          "done": true,
-          "start": 1758320857669,
-          "focus": false,
-          "end": 1758371374484
         }
       },
       {
@@ -87,6 +60,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1758373473424"
+    "version": "1758386510949"
   }
 }

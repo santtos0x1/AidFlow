@@ -27,7 +27,7 @@
     top: 0;
     height: 100%;
     width: 5px;
-    background: linear-gradient(135deg, var(--accent), var(--green));
+    background: var(--accent);
     border-radius: 16px 0 0 16px;
     pointer-events: none; 
 }
@@ -136,7 +136,7 @@
     border: none;
     border-radius: 8px;
     font-size: 0.9rem;
-    font-family: var(--font-title);
+    font-family: var(--font-2);
     font-weight: 600;
     letter-spacing: 0.05rem;
     text-transform: uppercase;
@@ -197,7 +197,6 @@
 
 .btn-secondary:hover {
     background: var(--border);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     transform: none !important;
 }
 

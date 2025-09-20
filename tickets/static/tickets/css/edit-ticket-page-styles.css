@@ -27,7 +27,7 @@
     top: 0;
     height: 100%;
     width: 5px;
-    background: linear-gradient(135deg, var(--accent), var(--green));
+    background: var(--accent);
     border-radius: 16px 0 0 16px;
     pointer-events: none; 
 }
@@ -191,7 +191,6 @@
 
 .btn-secondary:hover {
     background: var(--border);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
 .errorlist {
