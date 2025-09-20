@@ -37,9 +37,10 @@
             </div>
 
             <div class="action-buttons">
-                <button class="btn btn-secondary">Edit Ticket</button>
+                <a href="{% url 'tickets:edit' ticket.uuid %}" class="btn btn-secondary">Edit Ticket</a>
             </div>
         </div>
     </main>
+    {% include "global/footer.html" %}
 </body>
 </html>

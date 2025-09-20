@@ -1,0 +1,31 @@
+.footer {
+    background-color: var(--header);
+    color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-links li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links li a:hover {
+    color: var(--accent);
+}

@@ -2,21 +2,36 @@
   "todotree": {
     "tree": [
       {
-        "key": 1758320814704,
+        "key": 1758371390686,
         "children": [],
         "todo": {
-          "content": "adicionar a aba de filtros na home",
-          "id": 1758320814704,
-          "level": "default",
-          "done": false,
-          "start": 1758320814705
+          "content": "corrigir a barra de rolagem da tela home que esta duplicada, e dar uma melhorada na aparencia das outras barras de rolagem",
+          "id": 1758371390686,
+          "level": "danger",
+          "done": true,
+          "start": 1758371390686,
+          "focus": false,
+          "end": 1758373473386
+        }
+      },
+      {
+        "key": 1758371376997,
+        "children": [],
+        "todo": {
+          "content": "corrigir as fontes de todo o site",
+          "id": 1758371376997,
+          "level": "danger",
+          "done": true,
+          "start": 1758371376997,
+          "focus": false,
+          "end": 1758373467673
         }
       },
       {
         "key": 1758320834745,
         "children": [],
         "todo": {
-          "content": "adicionar a funcionalidade do login",
+          "content": "adicionar a funcionalidade de login",
           "id": 1758320834745,
           "level": "default",
           "done": false,
@@ -30,8 +45,33 @@
           "content": "adicionar a funcionalidade de atualizar o ticket",
           "id": 1758320857669,
           "level": "default",
+          "done": true,
+          "start": 1758320857669,
+          "focus": false,
+          "end": 1758371374484
+        }
+      },
+      {
+        "key": 1758371559830,
+        "children": [],
+        "todo": {
+          "content": "criar a aba de solucoes na pagina detail, com a resposta de um user com a tag suport",
+          "id": 1758371559830,
+          "level": "default",
           "done": false,
-          "start": 1758320857669
+          "start": 1758371559830,
+          "focus": false
+        }
+      },
+      {
+        "key": 1758320814704,
+        "children": [],
+        "todo": {
+          "content": "adicionar a aba de filtros na home",
+          "id": 1758320814704,
+          "level": "default",
+          "done": false,
+          "start": 1758320814705
         }
       }
     ],
@@ -47,6 +87,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1758320874437"
+    "version": "1758373473424"
   }
 }
