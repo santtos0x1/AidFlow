@@ -1,13 +1,33 @@
 from django.shortcuts import render, redirect
 from .models import *
-from .forms import TicketCreateForm, TicketEditForm, SearchTicketForm
+from .forms import TicketCreateForm, TicketEditForm, ReplyTicketForm
 
 def home(request):
-    return render(request, 'tickets/pages/home.html', {"tickets" : Ticket.objects.all().order_by('-id')})
+    return render(request, 'tickets/pages/home.html', {
+        "tickets" : Ticket.objects.all().order_by('-id')
+    })
 
 def details(request, uuid):
     ticket = Ticket.objects.get(uuid=uuid)
-    return render(request, 'tickets/pages/detail.html', {'ticket': ticket})
+    return render(request, 'tickets/pages/detail.html', {
+        'ticket': ticket
+    })
+
+def reply_ticket(request, uuid):
+    ticket = Ticket.objects.get(uuid=uuid)
+    form = ReplyTicketForm(request.POST, instance=ticket)
+    if request.method == 'POST':
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            ticket.created_by = request.user
+            form.save()
+            return redirect('tickets:detail', uuid=ticket.uuid)
+        else:
+            form = ReplyTicketForm(instance=ticket)
+    return render(request, 'tickets/pages/reply-page.html', {
+        'ticket': ticket,
+        'form': form
+    })
 
 def edit_ticket(request, uuid):
     ticket = Ticket.objects.get(uuid=uuid)
@@ -20,7 +40,10 @@ def edit_ticket(request, uuid):
             return redirect('tickets:home')
         else:
             form = TicketEditForm(instance=ticket)
-    return render(request, 'tickets/pages/edit-ticket.html', {'ticket': ticket, 'form': form})
+    return render(request, 'tickets/pages/edit-ticket.html', {
+        'ticket': ticket,
+        'form': form
+    })
 
 def new_ticket(request):
     if request.method == 'POST':
@@ -33,7 +56,9 @@ def new_ticket(request):
     else:
         form = TicketCreateForm()
     
-    return render(request, 'tickets/pages/new-ticket.html', {'form': form})
+    return render(request, 'tickets/pages/new-ticket.html', {
+        'form': form
+    })
 
 def search_ticket(request):
     query = request.GET.get('q', '')
@@ -42,5 +67,7 @@ def search_ticket(request):
     else:
         tickets = Ticket.objects.all()
         
-    return render(request, 'tickets/pages/search.html', {'tickets': tickets})
+    return render(request, 'tickets/pages/search.html', {
+        'tickets': tickets
+    })
     

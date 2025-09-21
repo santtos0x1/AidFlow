@@ -2,15 +2,15 @@
   "todotree": {
     "tree": [
       {
-        "key": 1758375107498,
+        "key": 1758371559830,
         "children": [],
         "todo": {
-          "content": "adicionar uma barra de pesquisa que leva para outra pagina apenas com os tickets encontrados da pesquisa da barra de pesquisa",
-          "id": 1758375107498,
+          "content": "criar a aba de solucoes na pagina detail, com a resposta de um user com a tag suport",
+          "id": 1758371559830,
           "level": "default",
           "done": false,
-          "start": 1758375107498,
-          "focus": true
+          "start": 1758371559830,
+          "focus": false
         }
       },
       {
@@ -25,26 +25,27 @@
         }
       },
       {
-        "key": 1758371559830,
+        "key": 1758402356262,
         "children": [],
         "todo": {
-          "content": "criar a aba de solucoes na pagina detail, com a resposta de um user com a tag suport",
-          "id": 1758371559830,
+          "content": "modificar a cor do hover do footer para cinza da mesma cor do header",
+          "id": 1758402356262,
           "level": "default",
-          "done": false,
-          "start": 1758371559830,
-          "focus": false
+          "done": true,
+          "start": 1758402356262,
+          "focus": false,
+          "end": 1758412436274
         }
       },
       {
-        "key": 1758320814704,
+        "key": 1758457443431,
         "children": [],
         "todo": {
-          "content": "adicionar a aba de filtros na home",
-          "id": 1758320814704,
+          "content": "criar o botao de fechar o ticket que tem a categoria do fechamento, se for apenas fechar, close, ele aparece para o supporter e o usuario, o solved apenas o usuario que pode usar",
+          "id": 1758457443431,
           "level": "default",
           "done": false,
-          "start": 1758320814705
+          "start": 1758457443431
         }
       }
     ],
@@ -60,6 +61,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1758386510949"
+    "version": "1758457634105"
   }
 }

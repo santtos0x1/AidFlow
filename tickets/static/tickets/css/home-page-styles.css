@@ -15,6 +15,11 @@
     border-radius: 1rem;
     box-sizing: border-box;
     padding: 0 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.input-site-search:focus {
+    outline: none;
 }
 
 .search-button {
@@ -25,8 +30,7 @@
     height: 90%; 
     width: 2rem;
     border: none;
-    background: var(--accent);
-    color: white;
+    color: rgb(0, 0, 0);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -35,11 +39,6 @@
     font-size: 1rem;
     transition: background 0.2s;
 }
-
-.search-button:hover {
-    background: var(--header);
-}
-
 
 .ticket-container, .detail-container {
     display: flex;
@@ -78,6 +77,7 @@
     margin-right: 1rem;
     text-decoration: none;
     z-index: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .new-button-container::before {

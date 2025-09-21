@@ -21,6 +21,16 @@
                 </div>
             </div>
 
+            <!-- Solution -->
+            {% if ticket.solution != '' %}
+                <div class="ticket-content">
+                    <h2 class="section-title">Solution</h2>
+                    <div class="description">
+                        <span class="solution-username">@{{ ticket.created_by.username }}</span>: {{ ticket.solution }}
+                    </div>
+                </div>
+            {% endif %}
+
             <div class="ticket-meta">
                 <div class="meta-item">
                     <span class="meta-label">Creation Date</span>
@@ -39,6 +49,8 @@
             <div class="action-buttons">
                 <a href="{% url 'tickets:home' %}" class="btn btn-primary">Return</a>
                 <a href="{% url 'tickets:edit' ticket.uuid %}" class="btn btn-secondary">Edit Ticket</a>
+                <!-- Colocar o botao de responder quando o user tiver a tag de support -->
+                <a href="{% url 'tickets:reply' ticket.uuid %}" class="btn btn-reply">Reply</a>
             </div>
         </div>
     </main>

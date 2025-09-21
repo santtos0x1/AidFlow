@@ -10,7 +10,7 @@ class TicketCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['category'].empty_label = ""
-        self.fields['priority'].empty_label = None
+        self.fields['priority'].empty_label = ""
     
 
 class TicketEditForm(forms.ModelForm):
@@ -27,3 +27,8 @@ class SearchTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ['title']
+
+class ReplyTicketForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        fields = ['solution']

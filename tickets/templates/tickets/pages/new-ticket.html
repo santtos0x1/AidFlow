@@ -11,7 +11,7 @@
                 <p class="form-subtitle">Fill the informations below to open a new support ticket</p>
             </div>
             
-            <form method="post" class="ticket-form">
+            <form method="POST" class="ticket-form">
                 {% csrf_token %}
                 <div class="form-grid">
                     {{ form.as_p }}
