@@ -2,18 +2,6 @@
   "todotree": {
     "tree": [
       {
-        "key": 1758371559830,
-        "children": [],
-        "todo": {
-          "content": "criar a aba de solucoes na pagina detail, com a resposta de um user com a tag suport",
-          "id": 1758371559830,
-          "level": "default",
-          "done": false,
-          "start": 1758371559830,
-          "focus": false
-        }
-      },
-      {
         "key": 1758320834745,
         "children": [],
         "todo": {
@@ -25,27 +13,37 @@
         }
       },
       {
-        "key": 1758402356262,
-        "children": [],
-        "todo": {
-          "content": "modificar a cor do hover do footer para cinza da mesma cor do header",
-          "id": 1758402356262,
-          "level": "default",
-          "done": true,
-          "start": 1758402356262,
-          "focus": false,
-          "end": 1758412436274
-        }
-      },
-      {
         "key": 1758457443431,
         "children": [],
         "todo": {
-          "content": "criar o botao de fechar o ticket que tem a categoria do fechamento, se for apenas fechar, close, ele aparece para o supporter e o usuario, o solved apenas o usuario que pode usar",
+          "content": "criar o botao de fechar o ticket que tem a categoria do fechamento, se for apenas fechar, close, ele aparece para o supporter e o usuario, o solved o user e o support podem fechar",
           "id": 1758457443431,
           "level": "default",
           "done": false,
           "start": 1758457443431
+        }
+      },
+      {
+        "key": 1758461561674,
+        "children": [],
+        "todo": {
+          "content": "Colocar a funcionalidade de apagar o ticket, apenas o usuario criador do ticket e o support pode fazer isso",
+          "id": 1758461561674,
+          "level": "default",
+          "done": false,
+          "start": 1758461561674,
+          "focus": true
+        }
+      },
+      {
+        "key": 1758488903594,
+        "children": [],
+        "todo": {
+          "content": "criar o sistema de tags de usuario, com a tag standard e support",
+          "id": 1758488903594,
+          "level": "default",
+          "done": false,
+          "start": 1758488903594
         }
       }
     ],
@@ -61,6 +59,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1758457634105"
+    "version": "1758488964650"
   }
 }

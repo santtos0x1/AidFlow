@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import TicketCreateForm, TicketEditForm, ReplyTicketForm
+from django.contrib import messages
+
+def get_started(request):
+    return render(request, 'tickets/pages/get-started.html')
 
 def home(request):
     return render(request, 'tickets/pages/home.html', {
@@ -12,6 +16,16 @@ def details(request, uuid):
     return render(request, 'tickets/pages/detail.html', {
         'ticket': ticket
     })
+
+def delete_ticket(request, uuid):
+    ticket = Ticket.objects.get(uuid=uuid)
+    if request.method == 'POST' and request.POST.get('action') == 'delete_confirm':
+        ticket.delete()
+        messages.success(request, 'Ticket deleted successfully.')
+        return redirect('tickets:home')
+    
+    return render(request, 'tickets/detail.html', {'ticket': ticket})
+    
 
 def reply_ticket(request, uuid):
     ticket = Ticket.objects.get(uuid=uuid)

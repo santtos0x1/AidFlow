@@ -1,59 +1,9 @@
 {% include "tickets/partials/head/head-detail.html" %}
-{% load tz %}
+    <body>
+        {% include "global/header.html" %}
+        
+        {% include "tickets/partials/main-detail-ticket-content.html" %}
 
-<body>
-    {% include "global/header.html" %}
-    <main class="detail-container">
-        <div class="ticket-detail">
-            <div class="ticket-header">
-                <h1 class="ticket-title">{{ ticket.title }}</h1>
-                <div class="ticket-badges">
-                    <span class="badge status {{ ticket.status|lower }}">{{ ticket.status }}</span>
-                    <span class="badge priority {{ ticket.priority|lower }}">{{ ticket.priority }}</span>
-                    <span class="badge category">{{ ticket.category }}</span>
-                </div>
-            </div>
-
-            <div class="ticket-content">
-                <h2 class="section-title">Description</h2>
-                <div class="description">
-                    {{ ticket.description }}
-                </div>
-            </div>
-
-            <!-- Solution -->
-            {% if ticket.solution != '' %}
-                <div class="ticket-content">
-                    <h2 class="section-title">Solution</h2>
-                    <div class="description">
-                        <span class="solution-username">@{{ ticket.created_by.username }}</span>: {{ ticket.solution }}
-                    </div>
-                </div>
-            {% endif %}
-
-            <div class="ticket-meta">
-                <div class="meta-item">
-                    <span class="meta-label">Creation Date</span>
-                    <span class="meta-value">{{ ticket.creation_date|localtime|date:"M d, Y" }}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Created By</span>
-                    <span class="meta-value">{{ ticket.created_by.username }}</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Last Updated</span>
-                    <span class="meta-value">{{ ticket.updated_at|localtime|date:"M d, Y h:i A" }}</span>
-                </div>
-            </div>
-
-            <div class="action-buttons">
-                <a href="{% url 'tickets:home' %}" class="btn btn-primary">Return</a>
-                <a href="{% url 'tickets:edit' ticket.uuid %}" class="btn btn-secondary">Edit Ticket</a>
-                <!-- Colocar o botao de responder quando o user tiver a tag de support -->
-                <a href="{% url 'tickets:reply' ticket.uuid %}" class="btn btn-reply">Reply</a>
-            </div>
-        </div>
-    </main>
-    {% include "global/footer.html" %}
-</body>
+        {% include "global/footer.html" %}
+    </body>
 </html>

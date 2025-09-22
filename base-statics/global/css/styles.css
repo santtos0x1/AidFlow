@@ -12,6 +12,23 @@
     --yellow: #f3d112;
     --font-title: 'Anton SC', sans-serif;
     --font-2: 'Segoe UI', sans-serif;
+    --footer-height: 3rem;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
 }
 
 ::-webkit-scrollbar {
@@ -46,8 +63,9 @@
 
 ::-webkit-scrollbar-corner {
   background: #f3f4f5;
+}
 
-}* {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -56,7 +74,13 @@
 body {
     background: var(--bg);
     font-family: var(--font-2);
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    flex: 1;
 }
 
 .topbar-container {
@@ -85,7 +109,6 @@ body {
 }
 
 .topbar-title:hover {
-    transition: all 0.1s ease-in-out;
     color: rgba(255, 255, 255, 0.726);
 }
 
@@ -129,7 +152,6 @@ body {
 }
 
 /* ================= Badges ================= */
-
 .status, .priority, .category {
     padding: 0.3rem 0.8rem;
     border-radius: 15px;

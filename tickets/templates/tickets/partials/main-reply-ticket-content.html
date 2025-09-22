@@ -1,0 +1,32 @@
+<main class="main-content">
+    <div class="form-container">
+        <div class="form-header">
+            <i class="fa-solid fa-reply form-icon"></i>
+            <h1 class="form-title">Reply Ticket</h1>
+            <p class="form-subtitle">Provide a solution or response to this support ticket</p>
+        </div>
+        
+        <div class="ticket-info">
+            <h3>{{ ticket.title }}</h3>
+            <p>{{ ticket.description }}</p>
+        </div>
+
+        <form method="POST" class="reply-ticket-form">
+            {% csrf_token %}
+            <div class="ticket-edit-form">
+                {{ form.as_p }}
+            </div>
+
+            <div class="form-actions">
+                <a href="{% url 'tickets:detail' ticket.uuid %}" class="btn btn-secondary">
+                    <i class="fa-solid fa-xmark"></i>
+                    Cancel
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Send Reply
+                </button>
+            </div>
+        </form>
+    </div>
+</main>

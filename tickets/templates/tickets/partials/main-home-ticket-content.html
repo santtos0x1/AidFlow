@@ -1,0 +1,29 @@
+<main class="ticket-container">
+    <div class="ticket-container-buttons">
+        <a href="{% url 'tickets:new' %}" class="new-button-container">
+            New
+        </a>
+        {% include "global/search-bar.html" %}
+    </div>
+    <div class="ticket-container-content">
+        {% for ticket in tickets %}
+            <div class="ticket">
+                <div class="ticket-title">{{ticket.title}}</div>
+                
+                <div class="ticket-info">
+                    <span><strong>Category:</strong> {{ticket.category}}</span>
+                    <span class="status {{ticket.status|lower}}">{{ticket.status}}</span>
+                    <span class="priority {{ticket.priority|lower}}">{{ticket.priority}}</span>
+                </div>
+                
+                <div class="ticket-meta">
+                    <span><strong>Created:</strong> {{ticket.creation_date}}</span>
+                    <span><strong>By:</strong> {{ticket.created_by}}</span>
+                    <a href="{% url 'tickets:detail' ticket.uuid %}" class="detail-button">
+                        Detail
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</main>
