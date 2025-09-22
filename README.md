@@ -91,6 +91,7 @@ The application will be available at `http://127.0.0.1:8000/`
 - `priority`: Priority level (ForeignKey)
 - `creation_date`: Auto-generated creation timestamp
 - `created_by`: User who created the ticket (ForeignKey)
+- `solution`: Ticket solution 
 
 ### Supporting Models
 - **Category**: Ticket categorization
@@ -119,10 +120,14 @@ The application will be available at `http://127.0.0.1:8000/`
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/` | Home page with ticket list |
+| GET | `/` | Get started page |
+| GET | `/ticket/` | Home page with ticket list |
+| POST | `/ticket/new/` | Create new ticket |
+| POST | `/ticket/search` | List all searched tickets |
 | GET | `/ticket/<uuid>/` | Ticket detail view |
 | POST | `/ticket/<uuid>/edit/` | Update ticket |
-| POST | `/ticket/new/` | Create new ticket |
+| POST | `/ticket/<uuid>/reply/` | Reply a ticket |
+| POST | `ticket/<uuid:uuid>/delete/` | Delete a ticket |
 
 ## Contributing
 
