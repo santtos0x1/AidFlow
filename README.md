@@ -1,8 +1,11 @@
 # AidFlow
----
+
 A modern, minimalist ticket management system built with Django.
+
 ![Texto alternativo](docs/img/home-page.png)
+
 ---
+
 ## Features
 
 - **Ticket Management**: Create, view, edit, and track support tickets
@@ -12,9 +15,13 @@ A modern, minimalist ticket management system built with Django.
 - **Category Organization**: Group tickets by categories for better organization
 - **Responsive Design**: Mobile-first design that works on all devices
 - **Clean UI**: Minimalist interface with professional styling
+
 ---
+
 ![Texto alternativo](docs/img/detail-page.png)
+
 ---
+
 ## Tech Stack
 
 - **Backend**: Django 4.x
@@ -34,13 +41,15 @@ A modern, minimalist ticket management system built with Django.
 
 ### Setup
 
-1. **Clone the repository**
+1.**Clone the repository**
+
 ```bash
 git clone https://github.com/santtos0x1/aidflow.git
 cd aidflow
 ```
 
-2. **Create and activate virtual environment**
+2.**Create and activate virtual environment**
+
 ```bash
 python -m venv venv
 
@@ -51,28 +60,33 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3. **Install dependencies**
+3.**Install dependencies**
+
 ```bash
 pip install -r requirements.txt
 ```
 
-5. **Run database migrations**
+5.**Run database migrations**
+
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. **Create superuser**
+6.**Create superuser**
+
 ```bash
 python manage.py createsuperuser
 ```
 
-7. **Collect static files (production)**
+7.**Collect static files (production)**
+
 ```bash
 python manage.py collectstatic
 ```
 
-8. **Run development server**
+8.**Run development server**
+
 ```bash
 python manage.py runserver
 ```
@@ -82,6 +96,7 @@ The application will be available at `http://127.0.0.1:8000/`
 ## Models
 
 ### Ticket Model
+
 - `uuid`: Unique identifier
 - `title`: Ticket title
 - `description`: Detailed description
@@ -90,9 +105,10 @@ The application will be available at `http://127.0.0.1:8000/`
 - `priority`: Priority level (ForeignKey)
 - `creation_date`: Auto-generated creation timestamp
 - `created_by`: User who created the ticket (ForeignKey)
-- `solution`: Ticket solution 
+- `solution`: Ticket solution
 
 ### Supporting Models
+
 - **Category**: Ticket categorization
 - **Priority**: Priority levels (Urgent, High, Medium, Low)
 - **Status**: Ticket status (Open, Closed, Pending)
@@ -100,17 +116,20 @@ The application will be available at `http://127.0.0.1:8000/`
 ## Usage
 
 ### Creating a Ticket
+
 1. Navigate to the home page
 2. Click the "New" button
 3. Fill out the ticket form with required information
 4. Submit to create the ticket
 
 ### Viewing Tickets
+
 - Home page displays all user tickets in a card layout
 - Each ticket shows title, category, status, priority, and creation info
 - Click "Detail" button to view full ticket information
 
 ### Managing Tickets
+
 - Edit tickets from the detail page
 - Update status, priority, or other fields
 - Track creation and modification dates
