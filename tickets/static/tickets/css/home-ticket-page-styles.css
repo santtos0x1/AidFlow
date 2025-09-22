@@ -2,8 +2,8 @@
     position: relative; 
     display: block;
     width: 100%;
-    height: clamp(2rem, 3.5vh, 2.5rem);
-    border-radius: 1rem;
+    height: clamp(var(--spacing-xl), 3.5vh, 2.5rem);
+    border-radius: var(--spacing-md);
     box-sizing: border-box;
 }
 
@@ -12,10 +12,10 @@
     height: 100%;
     padding-right: 2.5rem; 
     border: none;
-    border-radius: 1rem;
+    border-radius: var(--spacing-md);
     box-sizing: border-box;
     padding: 0 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-md)
 }
 
 .input-site-search:focus {
@@ -28,7 +28,7 @@
     top: 50%;
     transform: translateY(-50%);
     height: 90%; 
-    width: 2rem;
+    width: var(--spacing-xl);
     border: none;
     color: rgb(0, 0, 0);
     border-radius: 50%;
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: var(--spacing-md);
     transition: background 0.2s;
 }
 
@@ -49,10 +49,10 @@
 
 .ticket-container-buttons {
     background: linear-gradient(135deg, var(--surface), var(--border));
-    height: clamp(3rem, 5vh, 4rem);
+    height: clamp(var(--footer-height), 5vh, 4rem);
     display: flex;
     align-items: center;
-    padding: 0 clamp(1rem, 3vw, 2rem);
+    padding: 0 clamp(var(--spacing-md), 3vw, var(--spacing-xl));
     border-bottom: 2px solid var(--border);
 }
 
@@ -65,26 +65,26 @@
     font-family: var(--font-2);
     font-weight: 800;
     letter-spacing: 0.1rem;
-    border-radius: 8px; 
+    border-radius: var(--border-radius-md); 
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
-    margin: 1rem auto;
-    margin-right: 1rem;
+    margin: var(--spacing-md) auto;
+    margin-right: var(--spacing-md);
     text-decoration: none;
     z-index: 1;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-md)
 }
 
 .new-button-container::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: #156434;
+    background: var(--dark-green);
     opacity: 0;
     transition: opacity 0.2s ease;
-    border-radius: 8px;
+    border-radius: var(--border-radius-md);
     z-index: -1;
 }
 
@@ -94,18 +94,18 @@
 
 .ticket-container-content {
     flex: 1;
-    padding: clamp(1rem, 3vw, 2rem);
+    padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
 }
 
 .ticket {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    padding: 1.5rem;
+    border-radius: var(--border-radius-lg);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-lg);
     cursor: pointer;
     position: relative;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-md);
     transition: all 0.3s;
 }
 
@@ -117,28 +117,27 @@
     height: 100%;
     width: 3px;
     background: var(--accent);
-    border-radius: 12px 0 0 12px;
+    border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
 }
 
 .ticket:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-hg);
     border-color: var(--accent);
 }
 
 .ticket-title {
-    font-size: 1.5rem;
+    font-size: var(--spacing-lg);
     color: var(--text);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     font-family: var(--font-2);
-    font-weight: 900;
     letter-spacing: 0.05rem;
     margin-bottom: 0.8rem;
 }
 
 .ticket-info {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--spacing-lg);
     margin-bottom: 0.8rem;
 }
 
@@ -155,14 +154,14 @@
 .ticket-dates {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: var(--spacing-xs);
 }
 
 .detail-button {
-    padding: 0.4rem 1rem;
+    padding: 0.4rem var(--spacing-md);
     background: var(--accent);
     color: white;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     border: none;
     border-radius: 6px;
     font-size: 0.9rem;
@@ -180,7 +179,7 @@
 /* ================= Mobile ================= */
 @media (max-width: 768px) {
     .ticket {
-        padding: 1rem;
+        padding: var(--spacing-md);
     }
 
     .ticket-info, .ticket-meta {
@@ -189,9 +188,18 @@
         align-items: flex-start;
     }
 
-    .detail-button { align-self: stretch; text-align: center; }
+    .detail-button {
+        align-self: stretch;
+        text-align: center; 
+    }
 
-    .ticket-badges { gap: 0.5rem; margin-top: 1rem;}
+    .ticket-badges { 
+        gap: var(--spacing-sm); 
+        margin-top: var(--spacing-md);
+    }
 
-    .badge { padding: 0.3rem 0.8rem; font-size: 0.75rem; }
+    .badge { 
+        padding: 0.3rem 0.8rem; 
+        font-size: 0.75rem; 
+    }
 }

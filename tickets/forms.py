@@ -23,10 +23,12 @@ class TicketEditForm(forms.ModelForm):
         self.fields['category'].empty_label = ""
         self.fields['priority'].empty_label = ""
         
+        
 class SearchTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ['title']
+
 
 class ReplyTicketForm(forms.ModelForm):
     class Meta:
