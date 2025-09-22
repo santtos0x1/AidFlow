@@ -1,18 +1,23 @@
 from django.contrib import admin
-from .models import Ticket, Status, Priority, Category
 
-@admin.register(Ticket)
+from . import models
+
+
+@admin.register(models.Ticket)
 class TicketAdmin(admin.ModelAdmin):
-    ...
+    pass
     
-@admin.register(Category)
+    
+@admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
-    ...
+    pass
     
-@admin.register(Status)
+    
+@admin.register(models.Status)
 class StatusAdmin(admin.ModelAdmin):
-    ...
+    pass
     
-@admin.register(Priority)
+    
+@admin.register(models.Priority)
 class PriorityAdmin(admin.ModelAdmin):
-    ...
+    pass

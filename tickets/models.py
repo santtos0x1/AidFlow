@@ -1,6 +1,8 @@
+from uuid import uuid4
+
 from django.db import models
 from django.contrib.auth.models import User
-import uuid
+from django import shortcuts
 
 
 class Category(models.Model):
@@ -24,29 +26,45 @@ class Status(models.Model):
         return self.name
 
 
+class TicketManager(models.Manager):
+    def get_by_uuid_or_404(self, uuid):
+        return shortcuts.get_object_or_404(self.model, uuid=uuid)
+
+
 class Ticket(models.Model):
-    # Identification
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(default=uuid4, editable=False, unique=True)
     
-    # Basic Information
     title = models.CharField(max_length=65)
     description = models.CharField(max_length=200)
     solution = models.TextField(default='', blank=True)
     
-    # Relationships
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    priority = models.ForeignKey(Priority, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    priority = models.ForeignKey(
+        Priority,
+        on_delete=models.SET_NULL,
+        null=True
+    )
     status = models.ForeignKey(
         Status, 
         on_delete=models.SET_NULL, 
         null=True, 
         default=1
     )
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
     
-    # Timestamps
     creation_date = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+    objects = TicketManager()
+
+    
     def __str__(self):
         return self.title
+    
