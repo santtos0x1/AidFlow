@@ -1,7 +1,6 @@
 # AidFlow
-
-A modern, minimalist ticket management system built with Django. AidFlow provides a clean interface for creating, managing, and tracking support tickets with an emphasis on simplicity and user experience.
 ---
+A modern, minimalist ticket management system built with Django.
 ![Texto alternativo](docs/img/home-page.png)
 ---
 ## Features
