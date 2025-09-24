@@ -3,6 +3,7 @@ from django import forms
 from .models import Ticket
 
 
+""" Creates the Ticket-Create Form """
 class TicketCreateForm(forms.ModelForm):
     class Meta:
         model = Ticket
@@ -18,7 +19,8 @@ class TicketCreateForm(forms.ModelForm):
         self.fields['category'].empty_label = ""
         self.fields['priority'].empty_label = ""
     
-
+    
+""" Creates the Ticket-Edit Form """
 class TicketEditForm(forms.ModelForm):
     class Meta:
         model = Ticket
@@ -36,6 +38,7 @@ class TicketEditForm(forms.ModelForm):
         self.fields['priority'].empty_label = ""
         
         
+""" Creates the Search-Ticket Form """
 class SearchTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
@@ -44,6 +47,7 @@ class SearchTicketForm(forms.ModelForm):
         ]
 
 
+""" Creates the Reply-Ticket Form """
 class ReplyTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket

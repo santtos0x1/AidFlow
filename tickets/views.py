@@ -4,14 +4,14 @@ from django import shortcuts
 from . import models
 from . import forms
 
-
+""" Renders the Get-Started """
 def get_started(request):
     return shortcuts.render(
         request,
         'tickets/pages/get-started.html'
     )
 
-
+""" Renders the Home with the context """
 def home(request):
     query_set_id = shortcuts.get_list_or_404(models.Ticket)
     
@@ -23,7 +23,7 @@ def home(request):
         }
     )
 
-
+""" Renders the Details with the context """
 def details(request, uuid):
     ticket = models.Ticket.objects.get_by_uuid_or_404(uuid=uuid)
     
@@ -36,6 +36,7 @@ def details(request, uuid):
     )
 
 
+""" Deletes the tickert and redirects to the home page """
 def delete_ticket(request, uuid):
     ticket = models.Ticket.objects.get_by_uuid_or_404(uuid=uuid)
     
@@ -55,7 +56,7 @@ def delete_ticket(request, uuid):
         }
     )
     
-
+""" Reply the ticket and redirects to the details page """
 def reply_ticket(request, uuid):
     ticket = models.Ticket.objects.get_by_uuid_or_404(uuid=uuid)
     form = forms.ReplyTicketForm(request.POST, instance=ticket)
@@ -77,7 +78,7 @@ def reply_ticket(request, uuid):
         }
     )
 
-
+""" Edit the ticket and redirects to the home page """
 def edit_ticket(request, uuid):
     ticket = models.Ticket.objects.get_by_uuid_or_404(uuid=uuid)
     form = forms.TicketEditForm(request.POST, instance=ticket)
@@ -99,7 +100,7 @@ def edit_ticket(request, uuid):
         }
     )
     
-
+""" Creates a new ticket and redirects to the home page """
 def new_ticket(request):
     form = forms.TicketCreateForm(request.POST)
     if request.method == 'POST' and form.is_valid():
@@ -118,7 +119,7 @@ def new_ticket(request):
         }
     )
 
-
+""" Searchs the ticket with the query """
 def search_ticket(request):
     query = request.GET.get('q', '')
     

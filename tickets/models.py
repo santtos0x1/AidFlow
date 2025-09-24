@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django import shortcuts
 
 
+""" Creates the Category Model """
 class Category(models.Model):
     name = models.CharField(max_length=40)
     
@@ -12,6 +13,7 @@ class Category(models.Model):
         return self.name
 
 
+""" Creates the Priority Model """
 class Priority(models.Model):
     name = models.CharField(max_length=20)
     
@@ -19,6 +21,7 @@ class Priority(models.Model):
         return self.name
 
 
+""" Creates the Status Model """
 class Status(models.Model):
     name = models.CharField(max_length=20)
     
@@ -26,10 +29,13 @@ class Status(models.Model):
         return self.name
 
 
+""" Creates the TicketManager Manager """
 class TicketManager(models.Manager):
     def get_by_uuid_or_404(self, uuid):
         return shortcuts.get_object_or_404(self.model, uuid=uuid)
 
+
+""" Creates the Ticket Model """
 class Ticket(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False, unique=True)
     
