@@ -30,7 +30,6 @@ class TicketManager(models.Manager):
     def get_by_uuid_or_404(self, uuid):
         return shortcuts.get_object_or_404(self.model, uuid=uuid)
 
-
 class Ticket(models.Model):
     uuid = models.UUIDField(default=uuid4, editable=False, unique=True)
     
@@ -41,12 +40,14 @@ class Ticket(models.Model):
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        default=1
     )
     priority = models.ForeignKey(
         Priority,
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        default=1
     )
     status = models.ForeignKey(
         Status, 
@@ -63,7 +64,6 @@ class Ticket(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     objects = TicketManager()
-
     
     def __str__(self):
         return self.title
