@@ -13,7 +13,7 @@ def get_started(request):
 
 
 def home(request):
-    query_set_id = models.Ticket.objects.all().order_by('-id')
+    query_set_id = shortcuts.get_list_or_404(models.Ticket)
     
     return shortcuts.render(
         request,
