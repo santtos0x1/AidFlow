@@ -141,7 +141,7 @@ The application will be available at `http://127.0.0.1:8000/`
 | GET | `/` | Get started page |
 | GET | `/ticket/` | Home page with ticket list |
 | POST | `/ticket/new/` | Create new ticket |
-| POST | `/ticket/search` | List all searched tickets |
+| POST | `/ticket/search/?q=` | List all searched tickets |
 | GET | `/ticket/<uuid>/` | Ticket detail view |
 | POST | `/ticket/<uuid>/edit/` | Update ticket |
 | POST | `/ticket/<uuid>/reply/` | Reply a ticket |

@@ -43,6 +43,21 @@ class TicketViewsTest(ttb.BaseTicketTest):
         
         self.assertTemplateUsed(response, self.templates_paths['home'])
 
+    """ Tests if the template loads the correct ticket """
+    def test_ticket_home_template_loads_the_correct_ticket(self):
+        title = self.ticket.title
+        response = self.client.get(urls.reverse('tickets:home'))
+        content = response.content.decode('utf-8')
+    
+        self.assertIn(title, content)
+    
+    """ Tests if the ticket loads the correct context """
+    def test_ticket_home_loads_the_correct_context(self):
+        response = self.client.get(urls.reverse('tickets:home'))
+        
+        self.assertIn('tickets', response.context)
+        self.assertIn(self.ticket, response.context['tickets'])
+
     """ ============== Get-Started Testing ============== """
     
     """ Tests the View Funcion """
@@ -91,6 +106,16 @@ class TicketViewsTest(ttb.BaseTicketTest):
         
         self.assertTemplateUsed(response, self.templates_paths['new'])
 
+    """ Tests if the ticket loads the correct context """
+    def test_ticket_new_loads_the_correct_context(self):
+        response = self.client.get(
+            urls.reverse(
+                'tickets:new'
+            )
+        )
+        
+        self.assertIn('form', response.context)
+
     """ ============== Search Testing ============== """
     
     """ Tests the View Funcion """
@@ -117,6 +142,21 @@ class TicketViewsTest(ttb.BaseTicketTest):
         response = self.client.get(urls.reverse('tickets:search'))
         
         self.assertTemplateUsed(response, self.templates_paths['search'])
+    
+    """ Tests if the template loads the correct ticket """
+    def test_ticket_search_template_loads_the_correct_ticket(self):
+        title = self.ticket.title
+        response = self.client.get(urls.reverse('tickets:search'))
+        content = response.content.decode('utf-8')
+    
+        self.assertIn(title, content)
+    
+    """ Tests if the ticket loads the correct context """
+    def test_ticket_search_loads_the_correct_context(self):
+        response = self.client.get(urls.reverse('tickets:search'))
+        
+        self.assertIn('tickets', response.context)
+        self.assertIn(self.ticket, response.context['tickets'])
 
     """ ============== Detail Testing ============== """
     
@@ -188,6 +228,34 @@ class TicketViewsTest(ttb.BaseTicketTest):
         
         self.assertTemplateUsed(response, self.templates_paths['details'])
     
+    """ Tests if the template loads the correct ticket """
+    def test_ticket_detail_template_loads_the_correct_ticket(self):
+        title = self.ticket.title
+        response = self.client.get(
+            urls.reverse(
+                'tickets:detail',
+                kwargs = {
+                    'uuid': self.ticket.uuid
+                }
+            )
+        )
+        content = response.content.decode('utf-8')
+    
+        self.assertIn(title, content)    
+
+    """ Tests if the ticket loads the correct context """
+    def test_ticket_detail_loads_the_correct_context(self):
+        response = self.client.get(
+            urls.reverse(
+                'tickets:detail',
+                kwargs = {
+                    'uuid': self.ticket.uuid
+                }
+            )
+        )
+        
+        self.assertIn('ticket', response.context)
+
     """ ============== Edit Testing ============== """
     
     """ Tests the View Funcion """
@@ -279,6 +347,35 @@ class TicketViewsTest(ttb.BaseTicketTest):
         
         self.assertTemplateUsed(response, self.templates_paths['edit'])
 
+    """ Tests if the template loads the correct ticket """
+    def test_ticket_edit_template_loads_the_correct_ticket(self):
+        title = self.ticket.title
+        response = self.client.get(
+            urls.reverse(
+                'tickets:detail',
+                kwargs = {
+                    'uuid': self.ticket.uuid
+                }
+            )
+        )
+        content = response.content.decode('utf-8')
+    
+        self.assertIn(title, content)
+        
+    """ Tests if the ticket loads the correct context """
+    def test_ticket_edit_loads_the_correct_context(self):
+        response = self.client.get(
+            urls.reverse(
+                'tickets:edit',
+                kwargs = {
+                    'uuid': self.ticket.uuid
+                }
+            )
+        )
+        
+        self.assertIn('ticket', response.context)
+        self.assertIn('form', response.context)
+    
     """ ============== Delete Testing ============== """
     
     """ Tests the View Funcion """
@@ -360,6 +457,40 @@ class TicketViewsTest(ttb.BaseTicketTest):
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Ticket.objects.filter(uuid=self.ticket.uuid).exists())
 
+    """ Tests if the template loads the correct ticket """
+    def test_ticket_delete_template_loads_the_correct_ticket(self):
+        title = self.ticket.title
+        response = self.client.post(
+            urls.reverse(
+                'tickets:detail',
+                kwargs = {
+                    'uuid': self.ticket.uuid
+                },
+            ),
+            data = {
+                'action': 'delete_confirm'
+            }
+        )
+        content = response.content.decode('utf-8')
+    
+        self.assertIn(title, content)
+        
+    """ Tests if the ticket loads the correct context """
+    def test_ticket_delete_loads_the_correct_context(self):
+        response = self.client.get(
+            urls.reverse(
+                'tickets:delete',
+                kwargs = {
+                    'uuid': self.ticket.uuid
+                }
+            ),
+            data = {
+                'action': 'delete_confirm'
+            }
+        )
+        
+        self.assertIn('ticket', response.context)
+
     """ ============== Reply Testing ============== """ 
     
     """ Tests the View Funcion """
@@ -438,4 +569,32 @@ class TicketViewsTest(ttb.BaseTicketTest):
         )
         
         self.assertTemplateUsed(response, self.templates_paths['reply'])
+    
+    """ Tests if the template loads the correct ticket """
+    def test_ticket_reply_template_loads_the_correct_ticket(self):
+        title = self.ticket.title
+        response = self.client.get(
+            urls.reverse(
+                'tickets:reply',
+                kwargs = {
+                    'uuid': self.ticket.uuid,
+                },
+            )
+        )
+        content = response.content.decode('utf-8')
+    
+        self.assertIn(title, content)
+    
+    """ Tests if the ticket loads the correct context """
+    def test_ticket_reply_loads_the_correct_context(self):
+        response = self.client.get(
+            urls.reverse(
+                'tickets:reply',
+                kwargs = {
+                    'uuid': self.ticket.uuid
+                }
+            )
+        )
         
+        self.assertIn('ticket', response.context)
+        self.assertIn('form', response.context)
