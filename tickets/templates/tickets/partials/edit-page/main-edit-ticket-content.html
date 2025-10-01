@@ -1,0 +1,9 @@
+<main class="main-content">
+    <div class="form-container">
+        {% if ticket.status|lower == "pending" %}
+            {% include "tickets/partials/edit-page/edit-ticket-form.html" %}
+        {% else %}
+            {% include "tickets/partials/edit-page/edit-status-message.html" %}
+        {% endif %}
+    </div>
+</main>

@@ -1,0 +1,11 @@
+<div class="action-buttons">
+    <a href="{% url 'tickets:home' %}" class="btn btn-primary">Return</a>
+    <!-- Colocar o botao de responder quando o user tiver a tag de support -->
+    <a href="{% url 'tickets:edit' ticket.uuid %}" class="btn btn-secondary">Edit Ticket</a>
+
+    <!-- Colocar o botao de responder quando o user tiver a tag de support -->
+    <a href="{% url 'tickets:reply' ticket.uuid %}" class="btn btn-reply">Reply</a>
+    <button type="button" class="btn btn-danger" onclick="showDeleteConfirmation()">
+        Delete Ticket
+    </button>
+</div>

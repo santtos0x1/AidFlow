@@ -1,9 +1,13 @@
+{% load static %}
+
 {% include "tickets/partials/head/head-detail.html" %}
     <body>
         {% include "global/header.html" %}
         
-        {% include "tickets/partials/main-detail-ticket-content.html" %}
+        {% include "tickets/partials/detail-page/main-detail-ticket-content.html" %}
 
         {% include "global/footer.html" %}
+
+        <script src="{% static 'tickets/js/delete-confirmation.js' %}"></script>
     </body>
 </html>

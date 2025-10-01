@@ -1,0 +1,16 @@
+{% load tz %}
+
+<div class="ticket-meta">
+    <div class="meta-item">
+        <span class="meta-label">Creation Date</span>
+        <span class="meta-value">{{ ticket.creation_date|localtime|date:"M d, Y" }}</span>
+    </div>
+    <div class="meta-item">
+        <span class="meta-label">Created By</span>
+        <span class="meta-value">{{ ticket.created_by.username }}</span>
+    </div>
+    <div class="meta-item">
+        <span class="meta-label">Last Updated</span>
+        <span class="meta-value">{{ ticket.updated_at|localtime|date:"M d, Y h:i A" }}</span>
+    </div>
+</div>

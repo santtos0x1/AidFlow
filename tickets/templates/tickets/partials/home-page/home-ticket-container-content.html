@@ -1,0 +1,17 @@
+<div class="ticket">
+    <div class="ticket-title">{{ticket.title}}</div>
+    
+    <div class="ticket-info">
+        <span><strong>Category:</strong> {{ticket.category}}</span>
+        <span class="status {{ticket.status|lower}}">{{ticket.status}}</span>
+        <span class="priority {{ticket.priority|lower}}">{{ticket.priority}}</span>
+    </div>
+    
+    <div class="ticket-meta">
+        <span><strong>Created:</strong> {{ticket.creation_date}}</span>
+        <span><strong>By:</strong> {{ticket.created_by}}</span>
+        <a href="{% url 'tickets:detail' ticket.uuid %}" class="detail-button">
+            Detail
+        </a>
+    </div>
+</div>

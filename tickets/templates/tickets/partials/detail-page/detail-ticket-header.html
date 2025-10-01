@@ -1,0 +1,22 @@
+<div class="ticket-header">
+    <h1 class="ticket-title">{{ ticket.title }}</h1>
+    <div class="ticket-badges">
+        <span class="badge status {{ ticket.status|lower }}">{{ ticket.status }}</span>
+        <span class="badge priority {{ ticket.priority|lower }}">{{ ticket.priority }}</span>
+        <span class="badge category">{{ ticket.category }}</span>
+    </div>
+
+    <div id="deleteConfirmation" style="display: none;" class="alert alert-warning">
+        <h5>Are you sure?</h5>
+        <p>Do you want to delete "{{ ticket.title }}"?</p>
+        <form method="POST" action="{% url 'tickets:delete' ticket.uuid %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" name="action" value="delete_confirm" class="btn btn-danger">
+                Yes, Delete
+            </button>
+        </form>
+        <button type="button" class="btn btn-secondary" onclick="hideDeleteConfirmation()">
+            Cancel
+        </button>
+    </div>
+</div>

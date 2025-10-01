@@ -1,0 +1,16 @@
+<main class="detail-container">
+    <div class="ticket-detail">
+        {% include "tickets/partials/detail-page/detail-ticket-header.html" %}
+
+        {% include "tickets/partials/detail-page/detail-description-section.html" %}
+
+        <!-- Solution -->
+        {% if ticket.solution != '' %}
+            {% include "tickets/partials/detail-page/detail-solution-section.html" %}
+        {% endif %}
+
+        {% include "tickets/partials/detail-page/detail-ticket-meta.html" %}
+
+        {% include "tickets/partials/detail-page/detail-action-buttons.html" %}
+    </div>
+</main>

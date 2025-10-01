@@ -1,0 +1,7 @@
+{% extends "tickets/partials/detail-page/detail-ticket-content-base.html" %}
+
+{% block section_title %} Solution {% endblock section_title %}
+
+{% block dec_content %} 
+    <span class="solution-username">@{{ ticket.created_by.username }}</span>: {{ ticket.solution }}
+{% endblock dec_content %}

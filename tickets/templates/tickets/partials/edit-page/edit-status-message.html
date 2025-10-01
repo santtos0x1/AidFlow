@@ -1,0 +1,8 @@
+<div class="status-message">
+    <h2>Ticket Cannot Be Edited</h2>
+    <p>This ticket is <strong>{{ ticket.status }}</strong> and cannot be edited because it has already been closed or resolved.</p>
+    <a href="{% url 'tickets:detail' ticket.uuid %}" class="btn btn-secondary">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Ticket
+    </a>
+</div>
