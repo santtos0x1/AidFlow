@@ -63,8 +63,7 @@ def reply_ticket(request, uuid):
     
     if request.method == 'POST' and form.is_valid():
         form_ticket = form.save(commit=False)
-        form_ticket.created_by = request.user
-        form.save()
+        form_ticket.save()
         return shortcuts.redirect('tickets:detail', uuid=ticket.uuid)
     else:
         form = forms.ReplyTicketForm(instance=ticket)
@@ -85,8 +84,7 @@ def edit_ticket(request, uuid):
     
     if request.method == 'POST' and form.is_valid():
         form_ticket = form.save(commit=False)
-        form_ticket.created_by = request.user 
-        form.save()
+        form_ticket.save()
         return shortcuts.redirect('tickets:home')
     else:
         form = forms.TicketEditForm(instance=ticket)
@@ -105,8 +103,7 @@ def new_ticket(request):
     form = forms.TicketCreateForm(request.POST)
     if request.method == 'POST' and form.is_valid():
         form_ticket = form.save(commit=False)
-        form_ticket.created_by = request.user 
-        form.save()
+        form_ticket.save()
         return shortcuts.redirect('tickets:home')
     else:
         form = forms.TicketCreateForm()

@@ -1,29 +1,13 @@
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="hero-badge">
-        <i class="fas fa-rocket"></i>
-        <span>Get Started</span>
-    </div>
+    {% include "tickets/partials/get-started-page/get-started-hero-badge.html" %}
     
-    <h1 class="hero-title">
-        <hr>
-            AidFlow
-        <hr>
-    </h1>
+    <h1 class="hero-title"><hr>AidFlow<hr></h1>
     
     <p class="hero-subtitle">
         The complete solution for support ticket management. 
         Clean interface, essential features and total control in a modern platform.
     </p>
 
-    <div class="cta-section">
-        <a href="" class="btn btn-primary">
-            <i class="fas fa-sign-in-alt"></i>
-            <span>Login</span>
-        </a>
-        <a href="" class="btn btn-secondary">
-            <i class="fas fa-user-plus"></i>
-            <span>Sign Up</span>
-        </a>
-    </div>
+    {% include "tickets/partials/get-started-page/get-started-cta-section.html" %}
 </section>

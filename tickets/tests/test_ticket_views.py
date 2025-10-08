@@ -598,3 +598,4 @@ class TicketViewsTest(ttb.BaseTicketTest):
         
         self.assertIn('ticket', response.context)
         self.assertIn('form', response.context)
+        
