@@ -32,7 +32,7 @@
           "level": "default",
           "done": false,
           "start": 1758461561674,
-          "focus": true
+          "focus": false
         }
       },
       {
@@ -44,6 +44,18 @@
           "level": "default",
           "done": false,
           "start": 1758488903594
+        }
+      },
+      {
+        "key": 1759941494445,
+        "children": [],
+        "todo": {
+          "content": "Renomear todos os arquivos, com nomes corretos e sem redundancia",
+          "id": 1759941494445,
+          "level": "default",
+          "done": false,
+          "start": 1759941494446,
+          "focus": true
         }
       }
     ],
@@ -59,6 +71,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1758488964650"
+    "version": "1759941512962"
   }
 }

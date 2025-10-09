@@ -1,9 +1,13 @@
+{# Include the head section for the new ticket page #}
 {% include "tickets/partials/head/head-new.html" %}
     <body>
+        {# Include the global header navigation #}
         {% include "global/header.html" %}
 
+        {# Include the main content section for creating a new ticket #}
         {% include "tickets/partials/new-ticket-page/main-new-ticket-content.html" %}
         
+        {# Include the global footer #}
         {% include "global/footer.html" %}
     </body>
 </html>

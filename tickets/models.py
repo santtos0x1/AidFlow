@@ -63,6 +63,8 @@ class Ticket(models.Model):
     )
     created_by = models.ForeignKey(
         User,
+        blank=True,
+        null=True,
         on_delete=models.CASCADE
     )
     

@@ -100,13 +100,13 @@ def edit_ticket(request, uuid):
     
 """ Creates a new ticket and redirects to the home page """
 def new_ticket(request):
-    form = forms.TicketCreateForm(request.POST)
+    form = forms.TicketCreateForm(request.POST or None)
+    
     if request.method == 'POST' and form.is_valid():
         form_ticket = form.save(commit=False)
+        # form_ticket.created_by = request.user  
         form_ticket.save()
         return shortcuts.redirect('tickets:home')
-    else:
-        form = forms.TicketCreateForm()
         
     return shortcuts.render(
         request,

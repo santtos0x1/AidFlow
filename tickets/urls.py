@@ -2,9 +2,10 @@ from django.urls import path
 
 from . import views
 
-
+""" App namespace """
 app_name = 'tickets'
 
+""" All URls and Views """
 urlpatterns = [
     # / 
     path('',                           views.get_started,   name='get-started'),

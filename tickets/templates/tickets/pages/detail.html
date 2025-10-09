@@ -1,13 +1,18 @@
 {% load static %}
 
+{# Include the head section for the ticket detail page #}
 {% include "tickets/partials/head/head-detail.html" %}
     <body>
+        {# Include the global header navigation #}
         {% include "global/header.html" %}
         
+        {# Include the main content section for ticket details #}
         {% include "tickets/partials/detail-page/main-detail-ticket-content.html" %}
 
+        {# Include the global footer #}
         {% include "global/footer.html" %}
 
+        {# Load JavaScript for delete confirmation #}
         <script src="{% static 'tickets/js/delete-confirmation.js' %}"></script>
     </body>
 </html>

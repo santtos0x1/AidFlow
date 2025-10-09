@@ -1,5 +1,7 @@
 <div class="search-bar">
+    <!-- CSRF Token -->
     {% csrf_token %}
+    <!-- Search bar form -->
     <form class="search-bar" method="get" action="{% url 'tickets:search' %}">
         <input type="search" class="input-site-search" name="q">
         <button type="submit" class="search-button">
