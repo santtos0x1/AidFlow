@@ -1,11 +1,10 @@
-
 .main-content {
-    margin-top: clamp(0.5rem, 1vh, 1rem);
+    margin-top: clamp(var(--spacing-xs), 1vh, var(--spacing-md));
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: var(--spacing-xl);
     background: var(--bg);
     flex: 1;
 }
@@ -14,11 +13,11 @@
     background: white;
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 2rem;
+    padding: var(--spacing-xl);
     max-width: 500px;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-md);
     width: 100%;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-xl);
     position: relative;
     cursor: default;
 }
@@ -37,30 +36,30 @@
 
 .form-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-xl);
     cursor: default; 
 }
 
 .form-icon {
-    font-size: 3rem;
+    font-size: var(--footer-height);
     color: var(--accent);
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-md);
     cursor: default; 
 }
 
 .form-title {
-    font-size: 2rem;
+    font-size: var(--spacing-xl);
     color: var(--text);
     font-family: var(--font-title);
     letter-spacing: 0.1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-sm);
     text-transform: uppercase;
     cursor: default; 
 }
 
 .form-subtitle {
     color: var(--text-light);
-    font-size: 1rem;
+    font-size: var(--spacing-md);
     line-height: 1.5;
     cursor: default; 
 }
@@ -74,7 +73,7 @@
     display: block;
     font-size: 0.85rem;
     color: var(--text);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     margin-bottom: 0.4rem;
     text-transform: uppercase;
     letter-spacing: 0.04rem;
@@ -86,9 +85,9 @@
 .ticket-form textarea,
 .ticket-form select {
     width: 100%;
-    padding: 0.8rem 1rem;
+    padding: 0.8rem var(--spacing-md);
     border: 2px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--border-radius-md);
     font-size: 0.95rem;
     color: var(--text);
     background: white;
@@ -118,30 +117,30 @@
 .ticket-form select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2331497a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 1rem center;
+    background-position: right var(--spacing-md) center;
     background-repeat: no-repeat;
     background-size: 1.2em 1.2em;
-    padding-right: 3rem;
+    padding-right: var(--footer-height);
 }
 
 .form-actions {
     display: flex;
-    gap: 1rem;
+    gap: var(--spacing-md);
     justify-content: flex-end;
-    margin-top: 2rem;
-    padding-top: 2rem;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
     border-top: 2px solid var(--surface);
     cursor: default;
 }
 
 .btn {
-    margin-top: 1.5rem;
-    padding: 0.8rem 1.5rem;
+    margin-top: var(--spacing-lg);
+    padding: 0.8rem var(--spacing-lg);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--border-radius-md);
     font-size: 0.9rem;
     font-family: var(--font-2);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     letter-spacing: 0.05rem;
     text-transform: uppercase;
     cursor: pointer !important; 
@@ -149,7 +148,7 @@
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--spacing-sm);
     position: relative;
     overflow: hidden;
     transform: none !important;
@@ -162,7 +161,7 @@
 }
 
 .btn-primary {
-    background: #219A52;
+    background: var(--green);
     color: white;
     z-index: 1;
 }
@@ -174,10 +173,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #156434;
+    background: var(--dark-green);
     opacity: 0;
     transition: opacity 0.3s ease;
-    border-radius: 8px;
+    border-radius: var(--border-radius-md);
     pointer-events: none;
     z-index: -1;
 }
@@ -206,14 +205,14 @@
 .errorlist li {
     background: rgba(231, 76, 60, 0.1);
     padding: 0.8rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--red);
+    border-radius: var(--border-radius-md);
+    border-left: var(--border-radius-sm) solid var(--red);
     margin-bottom: 0.4rem;
     cursor: default; 
 }
 
 .status-message p{
-    margin-top: 1rem;
+    margin-top: var(--spacing-md);
 }
 
 /* Mobile */
@@ -227,7 +226,7 @@
     }
 
     .form-container {
-        padding: 2rem 1.5rem;
+        padding: var(--spacing-xl) var(--spacing-lg);
         width: 100%;   
         max-width: 100%; 
         height: auto;    

@@ -1,7 +1,7 @@
 .footer {
     background-color: var(--header);
     color: white;
-    padding: 0.6rem 1rem;
+    padding: 0.6rem var(--spacing-md);
     text-align: center;
 }
 

@@ -9,7 +9,7 @@ app_name = 'tickets'
 urlpatterns = [
     # / 
     path('',                           views.get_started,   name='get-started'),
-    # /ticket
+    # /ticket/
     path('ticket/',                    views.home,          name='home'),
     path('ticket/new/',                views.new_ticket,    name='new'),
     path('ticket/search/',             views.search_ticket, name='search'),
