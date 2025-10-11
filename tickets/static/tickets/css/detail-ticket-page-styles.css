@@ -35,54 +35,6 @@
 	float: none;
 }
 
-.action-buttons {
-	margin-top: var(--spacing-xl);
-	display: flex;
-	gap: var(--spacing-md);
-	justify-content: flex-end;
-	flex-wrap: wrap;
-	flex-direction: column; 
-}
-
-.action-buttons .btn-group {
-	display: flex;
-	gap: var(--spacing-md);
-	justify-content: flex-end;
-	flex-wrap: wrap;
-	order: 1; 
-}
-
-.action-buttons > .btn {
-	order: 1;
-}
-
-.alert {
-	order: 2;
-	margin-top: var(--spacing-md);
-	width: 100%;
-}
-
-.alert-warning {
-	background: #fff3cd;
-	border: 1px solid #ffeaa7;
-	border-radius: var(--border-radius-md);
-	padding: var(--spacing-lg);
-	border-left: var(--border-radius-md) solid var(--orange);
-}
-
-.alert h5 {
-	color: var(--text);
-	margin-bottom: var(--spacing-md);
-	font-size: 1.1rem;
-	margin-top: 0;
-}
-
-.alert p {
-	color: var(--text-light);
-	margin-bottom: var(--spacing-lg);
-	line-height: 1.5;
-}
-
 .ticket-content {
 	margin-bottom: var(--spacing-xl);
 }
@@ -165,6 +117,45 @@
 	gap: var(--spacing-md);
 	justify-content: flex-end;
 	flex-wrap: wrap;
+	flex-direction: column;
+}
+
+.action-buttons .btn-group {
+	display: flex;
+	gap: var(--spacing-md);
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	order: 1;
+}
+
+.action-buttons > .btn {
+	order: 1;
+}
+
+.alert {
+	order: 2;
+	margin-top: var(--spacing-md);
+	width: 100%;
+}
+
+.alert-warning {
+	background: #fff3cd;
+	border: 1px solid #ffeaa7;
+	border-radius: var(--border-radius-md);
+	padding: var(--spacing-lg);
+	border-left: var(--border-radius-md) solid var(--orange);
+}
+
+.alert h5 {
+	color: var(--text);
+	margin: 0 0 var(--spacing-md);
+	font-size: 1.1rem;
+}
+
+.alert p {
+	color: var(--text-light);
+	margin-bottom: var(--spacing-lg);
+	line-height: 1.5;
 }
 
 .btn {
@@ -176,15 +167,12 @@
 	font-weight: var(--font-weight-medium);
 	letter-spacing: 0.05rem;
 	text-transform: uppercase;
-	cursor: pointer !important; 
+	cursor: pointer;
 	transition: all 0.3s ease;
 	text-decoration: none;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	position: relative;
-	overflow: hidden;
-	transform: none !important;
 	white-space: nowrap;
 }
 
@@ -197,22 +185,36 @@
 	background: var(--border);
 }
 
-.btn-secondary {
-	background: var(--accent);
-	color: white;
-}
-
-.btn-secondary:hover {
-	background: var(--header);
-}
-
+.btn-secondary,
 .btn-reply {
 	background: var(--accent);
 	color: white;
 }
 
+.btn-secondary:hover,
 .btn-reply:hover {
 	background: var(--header);
+}
+
+.btn-danger {
+	background: var(--red);
+	color: white;
+	border: 1px solid var(--red);
+}
+
+.btn-danger:hover {
+	background: var(--red);
+	border-color: var(--red);
+}
+
+.btn-cancel {
+	background: var(--surface);
+	color: var(--text);
+	border: 1px solid var(--border);
+}
+
+.btn-cancel:hover {
+	background: var(--border);
 }
 
 .delete-confirmation {
@@ -226,7 +228,7 @@
 
 .delete-confirmation h5 {
 	color: var(--text);
-	margin-bottom: var(--spacing-md);
+	margin: 0 0 var(--spacing-md);
 	font-size: 1.1rem;
 }
 
@@ -240,27 +242,6 @@
 	display: flex;
 	gap: 0.8rem;
 	flex-wrap: wrap;
-}
-
-.btn-danger {
-	background: var(--red);
-	color: white;
-	border: 1px solid var(--red);
-}
-
-.btn-danger:hover {
-	background:	var(--red);
-	border-color: var(--red);
-}
-
-.btn-cancel {
-	background: var(--surface);
-	color: var(--text);
-	border: 1px solid var(--border);
-}
-
-.btn-cancel:hover {
-	background: var(--border);
 }
 
 @media (max-width: 768px) {
@@ -301,7 +282,6 @@
 		flex-direction: column;
 		align-items: stretch;
 		gap: 0.8rem;
-		justify-content: stretch;
 	}
 	
 	.btn {
