@@ -36,6 +36,10 @@
     transition: background 0.2s;
 }
 
+.search-button:hover {
+    background-color: rgb(190, 190, 190);
+}
+
 .ticket-container,
 .detail-container {
     display: flex;
@@ -97,7 +101,6 @@
     border-radius: var(--border-radius-lg);
     margin-bottom: var(--spacing-md);
     padding: var(--spacing-lg);
-    cursor: pointer;
     position: relative;
     box-shadow: var(--shadow-md);
     transition: all 0.3s;

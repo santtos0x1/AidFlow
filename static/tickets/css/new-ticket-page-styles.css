@@ -1,6 +1,5 @@
 .main-content {
     margin-top: clamp(var(--spacing-sm), 1vh, var(--spacing-md));
-    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +16,7 @@
     width: 100%;
     box-shadow: var(--shadow-xl);
     position: relative;
-    cursor: default;
+    overflow: visible;
 }
 
 .form-container::before {
@@ -29,20 +28,17 @@
     width: 5px;
     background: var(--accent);
     border-radius: 16px 0 0 16px;
-    pointer-events: none; 
 }
 
 .form-header {
     text-align: center;
     margin-bottom: var(--spacing-xl);
-    cursor: default; 
 }
 
 .form-icon {
     font-size: var(--footer-height);
     color: var(--accent);
     margin-bottom: var(--spacing-md);
-    cursor: default; 
 }
 
 .form-title {
@@ -52,19 +48,16 @@
     letter-spacing: 0.1rem;
     margin-bottom: var(--spacing-sm);
     text-transform: uppercase;
-    cursor: default; 
 }
 
 .form-subtitle {
     color: var(--text-light);
     font-size: var(--spacing-md);
     line-height: 1.5;
-    cursor: default; 
 }
 
 .ticket-form p {
     margin-bottom: 1.2rem;
-    cursor: default;
 }
 
 .ticket-form label {
@@ -75,7 +68,6 @@
     margin-bottom: 0.4rem;
     text-transform: uppercase;
     letter-spacing: 0.04rem;
-    cursor: default; 
 }
 
 .ticket-form input[type="text"],
@@ -91,11 +83,8 @@
     background: white;
     transition: all 0.3s ease;
     font-family: var(--font-2);
-    cursor: text; 
-}
-
-.ticket-form select {
-    cursor: pointer !important; 
+    position: relative;
+    z-index: 10;
 }
 
 .ticket-form input:focus,
@@ -121,6 +110,11 @@
     padding-right: var(--footer-height);
 }
 
+.ticket-form select:focus {
+    position: relative;
+    z-index: 50;
+}
+
 .form-actions {
     display: flex;
     gap: var(--spacing-md);
@@ -128,7 +122,6 @@
     margin-top: var(--spacing-xl);
     padding-top: var(--spacing-xl);
     border-top: 2px solid var(--surface);
-    cursor: default;
 }
 
 .btn {
@@ -140,53 +133,33 @@
     font-weight: var(--font-weight-semibold);
     letter-spacing: 0.05rem;
     text-transform: uppercase;
-    cursor: pointer !important; 
+    cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-sm);
     position: relative;
-    overflow: hidden;
-    transform: none !important;
-}
-
-.btn:hover,
-.btn:focus,
-.btn:active {
-    transform: none !important;
 }
 
 .btn-primary {
     background: var(--green);
     color: white;
-    z-index: 1;
 }
 
 .btn-primary::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: var(--dark-green);
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: var(--border-radius-md);
-    pointer-events: none;
     z-index: -1;
-    font-weight: 200;
 }
 
 .btn-primary:hover::before {
     opacity: 1;
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active {
-    transform: none !important;
 }
 
 .btn-secondary {
@@ -197,12 +170,6 @@
 
 .btn-secondary:hover {
     background: var(--border);
-    transform: none !important;
-}
-
-.btn-secondary:focus,
-.btn-secondary:active {
-    transform: none !important;
 }
 
 .errorlist {
@@ -218,19 +185,26 @@
     border-radius: var(--border-radius-md);
     border-left: var(--border-radius-sm) solid var(--red);
     margin-bottom: 0.4rem;
-    cursor: default; 
 }
 
 @media (max-width: 768px) {
     .main-content {
-        padding: var(--spacing-md);
+        padding: 0;
         align-items: flex-start;
-        padding-top: var(--spacing-xl);
+        justify-content: flex-start;
+        min-height: 100vh;
+        margin-top: 0;
+        overflow: visible;
     }
     
     .form-container {
         padding: var(--spacing-xl) var(--spacing-lg);
+        width: 100%;
         max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        overflow: visible;
+        position: relative;
     }
     
     .form-title {
@@ -245,6 +219,17 @@
     .ticket-form textarea, 
     .ticket-form select {
         padding: 0.7rem 0.9rem;
+    }
+
+    .ticket-form select {
+        padding-right: var(--footer-height);
+        position: relative;
+        z-index: 999;
+    }
+
+    .ticket-form p {
+        position: relative;
+        z-index: 1;
     }
     
     .form-actions {
