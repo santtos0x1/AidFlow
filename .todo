@@ -82,6 +82,19 @@
           "done": false,
           "start": 1760188147163
         }
+      },
+      {
+        "key": 1760270808281,
+        "children": [],
+        "todo": {
+          "content": "Corrigir o 404 quando nao tem nenhum ticket na base de dados na pagina /ticket/",
+          "id": 1760270808281,
+          "level": "danger",
+          "done": true,
+          "start": 1760270808281,
+          "focus": false,
+          "end": 1760271298191
+        }
       }
     ],
     "expandKeys": [],
@@ -96,6 +109,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1760188387353"
+    "version": "1760271298239"
   }
 }

@@ -4,6 +4,7 @@ from django import shortcuts
 from . import models
 from . import forms
 
+
 """ Renders the Get-Started """
 def get_started(request):
     return shortcuts.render(
@@ -13,7 +14,7 @@ def get_started(request):
 
 """ Renders the Home with the context """
 def home(request):
-    query_set_id = shortcuts.get_list_or_404(models.Ticket)
+    query_set_id = models.Ticket.objects.all()
     
     return shortcuts.render(
         request,
@@ -34,7 +35,6 @@ def details(request, uuid):
             'ticket': ticket
         }
     )
-
 
 """ Deletes the tickert and redirects to the home page """
 def delete_ticket(request, uuid):
