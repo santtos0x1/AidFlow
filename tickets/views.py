@@ -5,7 +5,7 @@ from django import shortcuts
 from . import models
 from . import forms
 
-
+""" Returns the Ticket model getted by uuid or 404 """
 def ticket_by_uuid_or_404(uuid):
     ticket = models.Ticket.objects.get_by_uuid_or_404(uuid=uuid)
     
