@@ -9,11 +9,20 @@ class BaseTicketTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         """ Creates the values of the ticket """
-        cls.user = User.objects.create_user(username='tester', password='123')
-        cls.category = models.Category.objects.create(name='category test')
-        cls.priority = models.Priority.objects.create(name='high')
-        cls.status = models.Status.objects.create(name='pending')
-        
+        cls.user = User.objects.create_user(
+            username='tester',
+            password='123'
+        )
+        cls.category = models.Category.objects.create(
+            name='category test'
+        )
+        cls.priority = models.Priority.objects.create(
+            name='high'
+        )
+        cls.status = models.Status.objects.create(
+            name='pending'
+        )
+
         """ Creates Ticket model """
         cls.ticket = models.Ticket.objects.create(
             title='Test',
@@ -23,7 +32,7 @@ class BaseTicketTest(TestCase):
             priority=cls.priority,
             status=cls.status
         )
-        
+
         """ Templates Path """
         cls.templates_paths = {
             'get_started': 'tickets/pages/get-started.html',
@@ -35,4 +44,3 @@ class BaseTicketTest(TestCase):
             'new':         'tickets/pages/new-ticket.html',
             'search':      'tickets/pages/search.html'
         }
-        
