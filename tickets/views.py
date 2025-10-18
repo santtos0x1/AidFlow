@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.contrib import messages
 from django import shortcuts
 #from django.contrib.auth.decorators import login_required
@@ -123,14 +124,16 @@ def new_ticket(request):
 def search_ticket(request):
     query = request.GET.get('q', '')
     tickets = Ticket.objects.all()
-
     if query:
         tickets = Ticket.objects.filter(title__icontains=query)
-
+    else:
+        raise Http404
+    
     return shortcuts.render(
         request,
         'tickets/pages/search.html',
         {
-            'tickets': tickets
+            'tickets': tickets,
+            'query': query
         }
     )

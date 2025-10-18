@@ -166,6 +166,15 @@ class TicketViewsTest(BaseTicketTest):
         self.assertIn('tickets', response.context)
         self.assertIn(self.ticket, response.context['tickets'])
 
+    def test_ticket_search_is_on_page_and_escaped(self):
+        url = urls.reverse('tickets:search') + '?q=<script></script>'
+        response = self.client.get(url)
+
+        self.assertIn(
+            'Results for "&lt;script&gt;&lt;/script&gt;"',
+            response.content.decode('utf-8')
+        )
+
     """ ============== Detail Testing ============== """
 
     """ Tests the View function """

@@ -1,0 +1,8 @@
+{% extends "global/head.html" %}
+{% load static %}
+
+{% block title %}Results for "{{ query }}"{% endblock title %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'tickets/css/home-ticket-page-styles.css' %}">
+{% endblock css_link %}
