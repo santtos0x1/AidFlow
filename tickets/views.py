@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.contrib import messages
 from django import shortcuts
+from django.db.models import Q
 #from django.contrib.auth.decorators import login_required
 
 from .models import Ticket
@@ -124,11 +125,15 @@ def new_ticket(request):
 def search_ticket(request):
     query = request.GET.get('q', '')
     tickets = Ticket.objects.all()
-    if query:
-        tickets = Ticket.objects.filter(title__icontains=query)
+    if query and query != " ":
+        """ Search by title or description using the python pipe and the django 'Q' """
+        tickets = Ticket.objects.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query)
+        ).order_by('-id')
     else:
         raise Http404
-    
+
     return shortcuts.render(
         request,
         'tickets/pages/search.html',
