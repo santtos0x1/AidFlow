@@ -1,78 +1,87 @@
 from uuid import uuid4
 
-from django.db import models
+from django.db.models import (
+    Model,
+    CharField,
+    Manager,
+    UUIDField,
+    ForeignKey,
+    SET_NULL,
+    TextField,
+    CASCADE,
+    DateTimeField
+)
 from django.contrib.auth.models import User
 from django import shortcuts
 
 
 """ Creates the Category Model """
-class Category(models.Model):
-    name = models.CharField(max_length=40)
-    
+class Category(Model):
+    name = CharField(max_length=40)
+
     def __str__(self):
         return self.name
 
 
 """ Creates the Priority Model """
-class Priority(models.Model):
-    name = models.CharField(max_length=20)
-    
+class Priority(Model):
+    name = CharField(max_length=20)
+
     def __str__(self):
         return self.name
 
 
 """ Creates the Status Model """
-class Status(models.Model):
-    name = models.CharField(max_length=20)
-    
+class Status(Model):
+    name = CharField(max_length=20)
+
     def __str__(self):
         return self.name
 
 
 """ Creates the TicketManager Manager """
-class TicketManager(models.Manager):
+class TicketManager(Manager):
     def get_by_uuid_or_404(self, uuid):
         return shortcuts.get_object_or_404(self.model, uuid=uuid)
 
 
 """ Creates the Ticket Model """
-class Ticket(models.Model):
-    uuid = models.UUIDField(default=uuid4, editable=False, unique=True)
-    
-    title = models.CharField(max_length=65)
-    description = models.CharField(max_length=200)
-    solution = models.TextField(default='', blank=True)
-    
-    category = models.ForeignKey(
+class Ticket(Model):
+    uuid = UUIDField(default=uuid4, editable=False, unique=True)
+
+    title = CharField(max_length=65)
+    description = CharField(max_length=200)
+    solution = TextField(default='', blank=True)
+
+    category = ForeignKey(
         Category,
-        on_delete=models.SET_NULL,
+        on_delete=SET_NULL,
         null=True,
         default=1
     )
-    priority = models.ForeignKey(
+    priority = ForeignKey(
         Priority,
-        on_delete=models.SET_NULL,
+        on_delete=SET_NULL,
         null=True,
         default=1
     )
-    status = models.ForeignKey(
-        Status, 
-        on_delete=models.SET_NULL, 
-        null=True, 
+    status = ForeignKey(
+        Status,
+        on_delete=SET_NULL,
+        null=True,
         default=1
     )
-    created_by = models.ForeignKey(
+    created_by = ForeignKey(
         User,
         blank=True,
         null=True,
-        on_delete=models.CASCADE
+        on_delete=CASCADE
     )
-    
-    creation_date = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
+
+    creation_date = DateTimeField(auto_now_add=True)
+    updated_at = DateTimeField(auto_now=True)
+
     objects = TicketManager()
-    
+
     def __str__(self):
         return self.title
-    

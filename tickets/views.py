@@ -1,21 +1,21 @@
 from django.http import Http404
-from django.contrib import messages
-from django import shortcuts
+from django.contrib.messages import success
+from django.shortcuts import redirect, render
 from django.db.models import Q
 #from django.contrib.auth.decorators import login_required
 
 from .models import Ticket
 from .forms import ReplyTicketForm, TicketEditForm, TicketCreateForm
 
-""" Returns the Ticket model getted by uuid or 404 """
-def ticket_by_uuid_or_404(uuid):
+""" Returns the Ticket model retrieved by uuid or 404 """
+def get_ticket_by_uuid_or_404(uuid):
     ticket = Ticket.objects.get_by_uuid_or_404(uuid=uuid)
 
     return ticket
 
 """ Renders the Get-Started """
 def get_started(request):
-    return shortcuts.render(
+    return render(
         request,
         'tickets/pages/get-started.html'
     )
@@ -24,7 +24,7 @@ def get_started(request):
 def home(request):
     tickets = Ticket.objects.all()
 
-    return shortcuts.render(
+    return render(
         request,
         'tickets/pages/home.html',
         {
@@ -34,9 +34,9 @@ def home(request):
 
 """ Renders the Details with the context """
 def details(request, uuid):
-    ticket = ticket_by_uuid_or_404(uuid=uuid)
+    ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
-    return shortcuts.render(
+    return render(
         request,
         'tickets/pages/detail.html',
         {
@@ -46,18 +46,18 @@ def details(request, uuid):
 
 """ Deletes the tickert and redirects to the home page """
 def delete_ticket(request, uuid):
-    ticket = ticket_by_uuid_or_404(uuid=uuid)
+    ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
     if request.method == 'POST' and request.POST.get('action') == 'delete_confirm':
         ticket.delete()
-        messages.success(
+        success(
             request,
             'Ticket deleted successfully.'
         )
 
-        return shortcuts.redirect('tickets:home')
+        return redirect('tickets:home')
 
-    return shortcuts.render(
+    return render(
         request,
         'tickets/pages/detail.html',
         {
@@ -67,16 +67,17 @@ def delete_ticket(request, uuid):
 
 """ Reply the ticket and redirects to the details page """
 def reply_ticket(request, uuid):
-    ticket = ticket_by_uuid_or_404(uuid=uuid)
-    form = ReplyTicketForm(request.POST, instance=ticket)
+    ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return shortcuts.redirect('tickets:detail', uuid=ticket.uuid)
+    if request.method == 'POST':
+        form = ReplyTicketForm(request.POST, instance=ticket)
+        if form.is_valid():
+            form.save()
+            return redirect('tickets:detail', uuid=ticket.uuid)
     else:
         form = ReplyTicketForm(instance=ticket)
 
-    return shortcuts.render(
+    return render(
         request,
         'tickets/pages/reply-page.html',
         {
@@ -87,16 +88,17 @@ def reply_ticket(request, uuid):
 
 """ Edit the ticket and redirects to the home page """
 def edit_ticket(request, uuid):
-    ticket = ticket_by_uuid_or_404(uuid=uuid)
-    form = TicketEditForm(request.POST, instance=ticket)
+    ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return shortcuts.redirect('tickets:home')
+    if request.method == 'POST':
+        form = TicketEditForm(request.POST, instance=ticket)
+        if form.is_valid():
+            form.save()
+            return redirect('tickets:home')
     else:
         form = TicketEditForm(instance=ticket)
 
-    return shortcuts.render(
+    return render(
         request,
         'tickets/pages/edit-ticket.html',
         {
@@ -107,13 +109,13 @@ def edit_ticket(request, uuid):
 
 """ Creates a new ticket and redirects to the home page """
 def new_ticket(request):
-    form = TicketCreateForm(request.POST or None)
+    if request.method == 'POST':
+        form = TicketCreateForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('tickets:home')
 
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return shortcuts.redirect('tickets:home')
-
-    return shortcuts.render(
+    return render(
         request,
         'tickets/pages/new-ticket.html',
         {
@@ -121,20 +123,21 @@ def new_ticket(request):
         }
     )
 
-""" Searchs the ticket with the query """
+""" Searches the ticket with the query """
 def search_ticket(request):
     query = request.GET.get('q', '')
     tickets = Ticket.objects.all()
-    if query and query != " ":
-        """ Search by title or description using the python pipe and the django 'Q' """
+    
+    if query.strip():
+        """ Search by title or description using the logical OR operator and the django 'Q' """
         tickets = Ticket.objects.filter(
             Q(title__icontains=query) |
             Q(description__icontains=query)
         ).order_by('-id')
     else:
-        raise Http404
+        tickets = Ticket.objects.none()
 
-    return shortcuts.render(
+    return render(
         request,
         'tickets/pages/search.html',
         {

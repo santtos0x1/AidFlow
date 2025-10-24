@@ -1,20 +1,29 @@
-from django.urls import path 
+from django.urls import path
 
-from . import views
+from .views import (
+    get_started,
+    home,
+    new_ticket,
+    search_ticket,
+    details,
+    edit_ticket,
+    delete_ticket,
+    reply_ticket,
+)
 
 """ App namespace """
 app_name = 'tickets'
 
 """ All URls and Views """
 urlpatterns = [
-    # / 
-    path('',                           views.get_started,   name='get-started'),
+    # /
+    path('',                           get_started,   name='get-started'),
     # /ticket/
-    path('ticket/',                    views.home,          name='home'),
-    path('ticket/new/',                views.new_ticket,    name='new'),
-    path('ticket/search/',             views.search_ticket, name='search'),
-    path('ticket/<uuid:uuid>/',        views.details,       name='detail'),
-    path('ticket/<uuid:uuid>/edit/',   views.edit_ticket,   name='edit'),
-    path('ticket/<uuid:uuid>/delete/', views.delete_ticket, name='delete'),
-    path('ticket/<uuid:uuid>/reply/',  views.reply_ticket,  name='reply')
+    path('ticket/',                    home,          name='home'),
+    path('ticket/new/',                new_ticket,    name='new'),
+    path('ticket/search/',             search_ticket, name='search'),
+    path('ticket/<uuid:uuid>/',        details,       name='detail'),
+    path('ticket/<uuid:uuid>/edit/',   edit_ticket,   name='edit'),
+    path('ticket/<uuid:uuid>/delete/', delete_ticket, name='delete'),
+    path('ticket/<uuid:uuid>/reply/',  reply_ticket,  name='reply')
 ]

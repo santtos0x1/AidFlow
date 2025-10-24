@@ -79,15 +79,14 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--dark-green);
     opacity: 0;
     transition: opacity 0.2s ease;
     border-radius: var(--border-radius-md);
     z-index: -1;
 }
 
-.new-button-container:hover::before {
-    opacity: 1;
+.new-button-container:hover {
+    background: var(--dark-green);
 }
 
 .ticket-container-content {

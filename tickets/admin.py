@@ -1,27 +1,27 @@
-from django.contrib import admin
+from django.contrib.admin import ModelAdmin, register
 
-from . import models
+from .models import Ticket, Category, Status, Priority
 
 
 """ Register Ticket on /admin/ """
-@admin.register(models.Ticket)
-class TicketAdmin(admin.ModelAdmin):
+@register(Ticket)
+class TicketAdmin(ModelAdmin):
     pass
-    
-    
+
+
 """ Register Category on /admin/ """
-@admin.register(models.Category)
-class CategoryAdmin(admin.ModelAdmin):
+@register(Category)
+class CategoryAdmin(ModelAdmin):
     pass
-    
-    
+
+
 """ Register Status on /admin/ """
-@admin.register(models.Status)
-class StatusAdmin(admin.ModelAdmin):
+@register(Status)
+class StatusAdmin(ModelAdmin):
     pass
-    
-    
+
+
 """ Register Priority on /admin/ """
-@admin.register(models.Priority)
-class PriorityAdmin(admin.ModelAdmin):
+@register(Priority)
+class PriorityAdmin(ModelAdmin):
     pass
