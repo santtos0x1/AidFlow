@@ -12,7 +12,7 @@ from django.db.models import (
     DateTimeField
 )
 from django.contrib.auth.models import User
-from django import shortcuts
+from django.shortcuts import get_object_or_404
 
 
 """ Creates the Category Model """
@@ -42,7 +42,7 @@ class Status(Model):
 """ Creates the TicketManager Manager """
 class TicketManager(Manager):
     def get_by_uuid_or_404(self, uuid):
-        return shortcuts.get_object_or_404(self.model, uuid=uuid)
+        return get_object_or_404(self.model, uuid=uuid)
 
 
 """ Creates the Ticket Model """

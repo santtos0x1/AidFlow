@@ -1,4 +1,3 @@
-from django.http import Http404
 from django.contrib.messages import success
 from django.shortcuts import redirect, render
 from django.db.models import Q
@@ -127,7 +126,7 @@ def new_ticket(request):
 def search_ticket(request):
     query = request.GET.get('q', '')
     tickets = Ticket.objects.all()
-    
+
     if query.strip():
         """ Search by title or description using the logical OR operator and the django 'Q' """
         tickets = Ticket.objects.filter(
