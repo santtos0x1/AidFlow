@@ -1,6 +1,11 @@
 from django.contrib.admin import ModelAdmin, register
 
-from .models import Ticket, Category, Status, Priority
+from .models import (
+    Ticket,
+    Category,
+    Status,
+    Priority
+)
 
 
 # Register Ticket on /admin/

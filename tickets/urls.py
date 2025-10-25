@@ -11,6 +11,7 @@ from .views import (
     reply_ticket,
 )
 
+
 """ App namespace """
 app_name = 'tickets'
 
@@ -25,5 +26,5 @@ urlpatterns = [
     path('ticket/<uuid:uuid>/',        details,       name='detail'),
     path('ticket/<uuid:uuid>/edit/',   edit_ticket,   name='edit'),
     path('ticket/<uuid:uuid>/delete/', delete_ticket, name='delete'),
-    path('ticket/<uuid:uuid>/reply/',  reply_ticket,  name='reply')
+    path('ticket/<uuid:uuid>/reply/',  reply_ticket,  name='reply'),
 ]

@@ -5,6 +5,7 @@ from django.db.models import Q
 from .models import Ticket
 from .forms import ReplyTicketForm, TicketEditForm, TicketCreateForm
 
+
 """ Returns the Ticket model retrieved by uuid or 404 """
 def get_ticket_by_uuid_or_404(uuid):
     ticket = Ticket.objects.get_by_uuid_or_404(uuid=uuid)
