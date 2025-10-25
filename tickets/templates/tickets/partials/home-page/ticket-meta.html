@@ -1,6 +1,6 @@
 <div class="ticket-meta">
-    <span><strong>Created:</strong> {{ticket.creation_date}}</span>
-    <span><strong>By:</strong> {{ticket.created_by}}</span>
+    <span><strong>Created:</strong> {{ ticket.creation_date }}</span>
+    <span><strong>By:</strong> {{ ticket.created_by }}</span>
     <a href="{% url 'tickets:detail' ticket.uuid %}" class="detail-button">
         Detail
     </a>

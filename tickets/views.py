@@ -122,7 +122,9 @@ def new_ticket(request):
             return redirect('tickets:home')
         else:
             error(request, 'Error: invalid form data.')
-
+    else:
+        form = TicketCreateForm()
+        
     return render(
         request,
         'tickets/pages/new-ticket.html',
