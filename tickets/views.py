@@ -1,7 +1,6 @@
-from django.contrib.messages import success
+from django.contrib.messages import success, error
 from django.shortcuts import redirect, render
 from django.db.models import Q
-#from django.contrib.auth.decorators import login_required
 
 from .models import Ticket
 from .forms import ReplyTicketForm, TicketEditForm, TicketCreateForm
@@ -49,13 +48,13 @@ def delete_ticket(request, uuid):
 
     if request.method == 'POST' and request.POST.get('action') == 'delete_confirm':
         ticket.delete()
-        success(
-            request,
-            'Ticket deleted successfully.'
-        )
-
+        success(request, 'Ticket deleted successfully.')
         return redirect('tickets:home')
 
+    error(
+        request,
+        'Error on ticket delete, ticket not deleted.'
+    )
     return render(
         request,
         'tickets/pages/detail.html',
@@ -72,7 +71,10 @@ def reply_ticket(request, uuid):
         form = ReplyTicketForm(request.POST, instance=ticket)
         if form.is_valid():
             form.save()
+            success(request, 'Ticket replied sucessfully.')
             return redirect('tickets:detail', uuid=ticket.uuid)
+        else:
+            error(request, 'Error: invalid form data.')
     else:
         form = ReplyTicketForm(instance=ticket)
 
@@ -93,7 +95,10 @@ def edit_ticket(request, uuid):
         form = TicketEditForm(request.POST, instance=ticket)
         if form.is_valid():
             form.save()
+            success(request, 'Ticket edited sucessfully.')
             return redirect('tickets:home')
+        else:
+            error(request, 'Error: invalid form data.')
     else:
         form = TicketEditForm(instance=ticket)
 
@@ -112,7 +117,10 @@ def new_ticket(request):
         form = TicketCreateForm(request.POST or None)
         if form.is_valid():
             form.save()
+            success(request, 'Ticket created sucessfully.')
             return redirect('tickets:home')
+        else:
+            error(request, 'Error: invalid form data.')
 
     return render(
         request,

@@ -1,14 +1,14 @@
 from uuid import uuid4
 
 from django.db.models import (
+    SET_NULL,
+    CASCADE,
     Model,
     CharField,
     Manager,
     UUIDField,
     ForeignKey,
-    SET_NULL,
     TextField,
-    CASCADE,
     DateTimeField
 )
 from django.contrib.auth.models import User
