@@ -26,7 +26,7 @@ def home(request):
     return render(
         request,
         'tickets/pages/home.html',
-        {
+        context = {
             'tickets' : tickets
         }
     )
@@ -38,7 +38,7 @@ def details(request, uuid):
     return render(
         request,
         'tickets/pages/detail.html',
-        {
+        context = {
             'ticket': ticket
         }
     )
@@ -59,7 +59,7 @@ def delete_ticket(request, uuid):
     return render(
         request,
         'tickets/pages/detail.html',
-        {
+        context = {
             'ticket': ticket
         }
     )
@@ -82,7 +82,7 @@ def reply_ticket(request, uuid):
     return render(
         request,
         'tickets/pages/reply-page.html',
-        {
+        context = {
             'ticket': ticket,
             'form': form
         }
@@ -106,7 +106,7 @@ def edit_ticket(request, uuid):
     return render(
         request,
         'tickets/pages/edit-ticket.html',
-        {
+        context = {
             'ticket': ticket,
             'form': form
         }
@@ -124,11 +124,11 @@ def new_ticket(request):
             error(request, 'Error: invalid form data.')
     else:
         form = TicketCreateForm()
-        
+
     return render(
         request,
         'tickets/pages/new-ticket.html',
-        {
+        context = {
             'form': form
         }
     )
@@ -150,7 +150,7 @@ def search_ticket(request):
     return render(
         request,
         'tickets/pages/search.html',
-        {
+        context = {
             'tickets': tickets,
             'query': query
         }
