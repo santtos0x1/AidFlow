@@ -6,6 +6,19 @@ from .models import Ticket
 from .forms import ReplyTicketForm, TicketEditForm, TicketCreateForm
 
 
+def check_form_request_and_validate(request, form, message, redir, ticket_uuid):
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            success(request, message)
+            if ticket_uuid:
+                return redirect(redir, uuid=ticket_uuid)
+            else:
+                return redirect(redir)
+        else:
+            error(request, 'Error: invalid form data.')
+    return None
+
 """ Returns the Ticket model retrieved by uuid or 404 """
 def get_ticket_by_uuid_or_404(uuid):
     ticket = Ticket.objects.get_by_uuid_or_404(uuid=uuid)
@@ -43,7 +56,7 @@ def details(request, uuid):
         }
     )
 
-""" Deletes the tickert and redirects to the home page """
+""" Deletes the ticket and redirects to the home page """
 def delete_ticket(request, uuid):
     ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
@@ -64,20 +77,28 @@ def delete_ticket(request, uuid):
         }
     )
 
-""" Reply the ticket and redirects to the details page """
 def reply_ticket(request, uuid):
     ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
     if request.method == 'POST':
         form = ReplyTicketForm(request.POST, instance=ticket)
-        if form.is_valid():
-            form.save()
-            success(request, 'Ticket replied sucessfully.')
-            return redirect('tickets:detail', uuid=ticket.uuid)
-        else:
-            error(request, 'Error: invalid form data.')
     else:
         form = ReplyTicketForm(instance=ticket)
+
+    message = 'Ticket replied successfully.'
+    redir = 'tickets:detail'
+    ticket_uuid = ticket.uuid
+
+    response = check_form_request_and_validate(
+        request=request,
+        form=form,
+        message=message,
+        redir=redir,
+        ticket_uuid=ticket_uuid
+    )
+
+    if response:
+        return response
 
     return render(
         request,
@@ -94,14 +115,23 @@ def edit_ticket(request, uuid):
 
     if request.method == 'POST':
         form = TicketEditForm(request.POST, instance=ticket)
-        if form.is_valid():
-            form.save()
-            success(request, 'Ticket edited sucessfully.')
-            return redirect('tickets:home')
-        else:
-            error(request, 'Error: invalid form data.')
     else:
         form = TicketEditForm(instance=ticket)
+
+    message = 'Ticket edited successfully.'
+    redir = 'tickets:detail'
+    ticket_uuid = ticket.uuid
+
+    response = check_form_request_and_validate(
+        request=request,
+        form=form,
+        message=message,
+        redir=redir,
+        ticket_uuid=ticket_uuid
+    )
+
+    if response:
+        return response
 
     return render(
         request,
@@ -114,16 +144,25 @@ def edit_ticket(request, uuid):
 
 """ Creates a new ticket and redirects to the home page """
 def new_ticket(request):
+
     if request.method == 'POST':
         form = TicketCreateForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            success(request, 'Ticket created sucessfully.')
-            return redirect('tickets:home')
-        else:
-            error(request, 'Error: invalid form data.')
     else:
         form = TicketCreateForm()
+
+    message = 'Ticket created successfully.'
+    redir = 'tickets:home'
+
+    response = check_form_request_and_validate(
+        request=request,
+        form=form,
+        message=message,
+        redir=redir,
+        ticket_uuid=None
+    )
+
+    if response:
+        return response
 
     return render(
         request,
