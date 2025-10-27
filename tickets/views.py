@@ -65,12 +65,11 @@ def details(request, uuid):
 def delete_ticket(request, uuid):
     ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.get('action') == 'delete_confirm':
         try:
-            if request.POST.get('action') == 'delete_confirm':
-                ticket.delete()
-                success(request, 'Ticket deleted successfully.')
-                return redirect('tickets:home')
+            ticket.delete()
+            success(request, 'Ticket deleted successfully.')
+            return redirect('tickets:home')
         except Exception as err:
             logger.exception(f'Could not delete the ticket: {err}')
             error(request, 'Error on ticket delete, ticket not deleted.')

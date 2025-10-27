@@ -103,9 +103,10 @@
           "content": "Implementar Logging e tratamento de erro no app",
           "id": 1761579146828,
           "level": "success",
-          "done": false,
+          "done": true,
           "start": 1761579146829,
-          "focus": true
+          "focus": false,
+          "end": 1761585567866
         }
       }
     ],
@@ -121,6 +122,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1761579184775"
+    "version": "1761585568003"
   }
 }
