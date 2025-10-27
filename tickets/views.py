@@ -19,11 +19,13 @@ def check_form_request_and_validate(request, form, message, redir, ticket_uuid):
             error(request, 'Error: invalid form data.')
     return None
 
+
 """ Returns the Ticket model retrieved by uuid or 404 """
 def get_ticket_by_uuid_or_404(uuid):
     ticket = Ticket.objects.get_by_uuid_or_404(uuid=uuid)
 
     return ticket
+
 
 """ Renders the Get-Started """
 def get_started(request):
@@ -31,6 +33,7 @@ def get_started(request):
         request,
         'tickets/pages/get-started.html'
     )
+
 
 """ Renders the Home with the context """
 def home(request):
@@ -44,6 +47,7 @@ def home(request):
         }
     )
 
+
 """ Renders the Details with the context """
 def details(request, uuid):
     ticket = get_ticket_by_uuid_or_404(uuid=uuid)
@@ -55,6 +59,7 @@ def details(request, uuid):
             'ticket': ticket
         }
     )
+
 
 """ Deletes the ticket and redirects to the home page """
 def delete_ticket(request, uuid):
@@ -77,6 +82,8 @@ def delete_ticket(request, uuid):
         }
     )
 
+
+""" Reply the ticket and redirects to the detail page """
 def reply_ticket(request, uuid):
     ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
@@ -109,7 +116,8 @@ def reply_ticket(request, uuid):
         }
     )
 
-""" Edit the ticket and redirects to the home page """
+
+""" Edit the ticket and redirects to the detail page """
 def edit_ticket(request, uuid):
     ticket = get_ticket_by_uuid_or_404(uuid=uuid)
 
@@ -142,6 +150,7 @@ def edit_ticket(request, uuid):
         }
     )
 
+
 """ Creates a new ticket and redirects to the home page """
 def new_ticket(request):
 
@@ -171,6 +180,7 @@ def new_ticket(request):
             'form': form
         }
     )
+
 
 """ Searches the ticket with the query """
 def search_ticket(request):
