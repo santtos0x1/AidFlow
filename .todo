@@ -95,6 +95,18 @@
           "focus": false,
           "end": 1760271298191
         }
+      },
+      {
+        "key": 1761579146828,
+        "children": [],
+        "todo": {
+          "content": "Implementar Logging e tratamento de erro no app",
+          "id": 1761579146828,
+          "level": "success",
+          "done": false,
+          "start": 1761579146829,
+          "focus": true
+        }
       }
     ],
     "expandKeys": [],
@@ -109,6 +121,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1760271298239"
+    "version": "1761579184775"
   }
 }
