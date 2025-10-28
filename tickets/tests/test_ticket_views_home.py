@@ -5,6 +5,10 @@ from .test_ticket_base import BaseTicketTest
 
 
 class HomeTicketViewsTest(BaseTicketTest):
+    def response(self):
+        RESPONSE = self.client.get(urls.reverse('tickets:home'))
+        return RESPONSE
+
     def test_ticket_home_view_function_is_correct(self):
         view_function = urls.resolve(
             urls.reverse('tickets:home')
@@ -12,12 +16,10 @@ class HomeTicketViewsTest(BaseTicketTest):
         self.assertIs(view_function, home)
 
     def test_ticket_home_view_returns_status_code_200_ok(self):
-        response = self.client.get(urls.reverse('tickets:home'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.response().status_code, 200)
 
     def test_ticket_home_view_content_shows_the_correct_value(self):
-        response = self.client.get(urls.reverse('tickets:home'))
-        content = response.content.decode('utf-8')
+        content = self.response().content.decode('utf-8')
         self.assertIn('Test', content)
         self.assertIn('high', content)
 
@@ -27,11 +29,9 @@ class HomeTicketViewsTest(BaseTicketTest):
 
     def test_ticket_home_template_loads_the_correct_ticket(self):
         title = self.ticket.title
-        response = self.client.get(urls.reverse('tickets:home'))
-        content = response.content.decode('utf-8')
+        content = self.response().content.decode('utf-8')
         self.assertIn(title, content)
 
     def test_ticket_home_loads_the_correct_context(self):
-        response = self.client.get(urls.reverse('tickets:home'))
-        self.assertIn('tickets', response.context)
-        self.assertIn(self.ticket, response.context['tickets'])
+        self.assertIn('tickets', self.response().context)
+        self.assertIn(self.ticket, self.response().context['tickets'])

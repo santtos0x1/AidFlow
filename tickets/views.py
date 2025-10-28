@@ -1,4 +1,4 @@
-import logging
+from logging import getLogger
 
 from django.contrib.messages import success, error
 from django.shortcuts import redirect, render
@@ -7,7 +7,7 @@ from django.db.models import Q
 from .models import Ticket
 from .forms import ReplyTicketForm, TicketEditForm, TicketCreateForm
 
-logger = logging.getLogger(__name__)
+logger = getLogger(__name__)
 
 
 def check_form_request_and_validate(request, form, message, redir, uuid=None):
