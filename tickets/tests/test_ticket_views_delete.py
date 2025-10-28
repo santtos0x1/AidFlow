@@ -19,7 +19,6 @@ class TicketViewsTest(BaseTicketTest):
                 }
             )
         )
-
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, self.templates_paths['delete'])
 
@@ -37,14 +36,12 @@ class TicketViewsTest(BaseTicketTest):
                 ),
                 data={'action': 'cancel'}
         )
-
         self.assertEqual(response.status_code, 200)
         self.assertTrue(
             Ticket.objects.filter(uuid=self.ticket.uuid).exists()
         )
 
 
-    """ Tests the View function """
     def test_ticket_delete_view_function_is_correct(self):
         view_function = urls.resolve(
             urls.reverse(
@@ -54,16 +51,13 @@ class TicketViewsTest(BaseTicketTest):
                 }
             )
         ).func
-
         self.assertIs(view_function, delete_ticket)
 
-    """ Tests the 302 status code """
     def test_ticket_delete_view_returns_status_code_302_redirect(self):
         self.client.login(
             username=self.user.username,
             password='123'
         )
-
         response = self.client.post(
             urls.reverse(
                 'tickets:delete',
@@ -75,17 +69,14 @@ class TicketViewsTest(BaseTicketTest):
                 'action': 'delete_confirm'
             }
         )
-
         self.assertEqual(response.status_code, 302)
 
-    """ Tests the 404 status code """
     def test_ticket_delete_view_returns_status_code_404_not_found_if_no_ticket(self):
         self.client.login(
             username=self.user.username,
             password='123'
         )
         self.ticket.delete()
-
         response = self.client.post(
             urls.reverse(
                 'tickets:delete',
@@ -97,10 +88,8 @@ class TicketViewsTest(BaseTicketTest):
                 'action': 'delete_confirm'
             }
         )
-
         self.assertEqual(response.status_code, 404)
 
-    """ Tests if the content shows the correct template """
     def test_ticket_delete_view_loads_correct_template(self):
         response = self.client.get(
             urls.reverse(
@@ -110,7 +99,6 @@ class TicketViewsTest(BaseTicketTest):
                 }
             )
         )
-
         self.assertTemplateUsed(response, self.templates_paths['delete'])
 
     def test_ticket_delete_view_removes_from_database(self):
@@ -125,13 +113,9 @@ class TicketViewsTest(BaseTicketTest):
                 'action': 'delete_confirm'
             }
         )
-
         self.assertEqual(response.status_code, 302)
-        self.assertFalse(
-            Ticket.objects.filter(uuid=self.ticket.uuid).exists()
-        )
+        self.assertFalse(Ticket.objects.filter(uuid=self.ticket.uuid).exists())
 
-    """ Tests if the template loads the correct ticket """
     def test_ticket_delete_template_loads_the_correct_ticket(self):
         title = self.ticket.title
         response = self.client.post(
@@ -146,10 +130,8 @@ class TicketViewsTest(BaseTicketTest):
             }
         )
         content = response.content.decode('utf-8')
-
         self.assertIn(title, content)
 
-    """ Tests if the ticket loads the correct context """
     def test_ticket_delete_loads_the_correct_context(self):
         response = self.client.get(
             urls.reverse(
@@ -162,5 +144,4 @@ class TicketViewsTest(BaseTicketTest):
                 'action': 'delete_confirm'
             }
         )
-
         self.assertIn('ticket', response.context)

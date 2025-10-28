@@ -48,11 +48,9 @@ class TicketManager(Manager):
 """ Creates the Ticket Model """
 class Ticket(Model):
     uuid = UUIDField(default=uuid4, editable=False, unique=True)
-
     title = CharField(max_length=65)
     description = CharField(max_length=200)
     solution = TextField(default='', blank=True)
-
     category = ForeignKey(
         Category,
         on_delete=SET_NULL,
@@ -77,10 +75,8 @@ class Ticket(Model):
         null=True,
         on_delete=CASCADE
     )
-
     creation_date = DateTimeField(auto_now_add=True)
     updated_at = DateTimeField(auto_now=True)
-
     objects = TicketManager()
 
     def __str__(self):

@@ -10,7 +10,7 @@ from .forms import ReplyTicketForm, TicketEditForm, TicketCreateForm
 logger = logging.getLogger(__name__)
 
 
-def check_form_request_and_validate(request, form, message, redir, ticket_uuid=None):
+def check_form_request_and_validate(request, form, message, redir, uuid=None):
     if request.method != 'POST':
         return None
 
@@ -18,8 +18,8 @@ def check_form_request_and_validate(request, form, message, redir, ticket_uuid=N
         if form.is_valid():
             form.save()
             success(request, message)
-            if ticket_uuid:
-                return redirect(redir, uuid=ticket_uuid)
+            if uuid:
+                return redirect(redir, uuid=uuid)
             return redirect(redir)
         error(request, 'Error: invalid form data.')
     except Exception as err:
@@ -92,7 +92,7 @@ def reply_ticket(request, uuid):
         form=form,
         message='Ticket replied successfully.',
         redir='tickets:detail',
-        ticket_uuid=ticket.uuid
+        uuid=ticket.uuid
     )
 
     if response:
@@ -117,7 +117,7 @@ def edit_ticket(request, uuid):
         form=form,
         message='Ticket edited successfully.',
         redir='tickets:detail',
-        ticket_uuid=ticket.uuid
+        uuid=ticket.uuid
     )
 
     if response:
