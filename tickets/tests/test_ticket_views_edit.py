@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django import urls
 
 from tickets.views import edit_ticket
@@ -46,7 +48,7 @@ class TicketViewsTest(BaseTicketTest):
         response_status_code = self.post_response_url_reverse_ticket_edit(
         ).status_code
 
-        self.assertEqual(response_status_code, 302)
+        self.assertEqual(response_status_code, HTTPStatus.FOUND)
 
     def test_ticket_edit_view_content_shows_the_correct_value(self):
         expected = 'high'
@@ -61,7 +63,7 @@ class TicketViewsTest(BaseTicketTest):
         response_status_code = self.post_response_url_reverse_ticket_edit(
         ).status_code
 
-        self.assertEqual(response_status_code, 404)
+        self.assertEqual(response_status_code, HTTPStatus.NOT_FOUND)
 
     def test_ticket_edit_view_loads_correct_template(self):
         response = self.get_response_url_reverse_ticket_edit()

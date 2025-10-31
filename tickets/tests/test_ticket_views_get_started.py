@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django import urls
 
 from tickets.views import get_started
@@ -19,7 +21,7 @@ class TicketViewsTest(BaseTicketTest):
         response_status_code = self.get_response_url_reverse_ticket_getstarted(
         ).status_code
 
-        self.assertEqual(response_status_code, 200)
+        self.assertEqual(response_status_code, HTTPStatus.OK)
 
     def test_ticket_get_started_view_loads_correct_template(self):
         response = self.get_response_url_reverse_ticket_getstarted()

@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from logging import getLogger
 
 from django import urls
@@ -53,14 +55,14 @@ class TicketViewsTest(BaseTicketTest):
         self.client_login()
         response_status_code = self.post_response_url_reverse_ticket_reply().status_code
 
-        self.assertEqual(response_status_code, 302)
+        self.assertEqual(response_status_code, HTTPStatus.FOUND)
 
     def test_ticket_reply_view_returns_status_code_404_not_found_if_no_ticket(self):
         self.client_login()
         self.ticket.delete()
         response_status_code = self.post_response_url_reverse_ticket_reply().status_code
 
-        self.assertEqual(response_status_code, 404)
+        self.assertEqual(response_status_code, HTTPStatus.NOT_FOUND)
 
     def test_ticket_reply_view_content_shows_the_correct_value(self):
         expected = 'Test'

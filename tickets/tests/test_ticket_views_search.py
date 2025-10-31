@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django import urls
 
 from tickets.views import search_ticket
@@ -23,7 +25,7 @@ class TicketViewsTest(BaseTicketTest):
             '?q=test'
         ).status_code
 
-        self.assertEqual(response_status_code, 200)
+        self.assertEqual(response_status_code, HTTPStatus.OK)
 
     def test_ticket_search_view_content_shows_the_correct_value(self):
         expected ='input-site-search'

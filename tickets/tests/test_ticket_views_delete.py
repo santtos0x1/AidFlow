@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django import urls
 
 from tickets.views import delete_ticket
@@ -36,7 +38,7 @@ class TicketViewsTest(BaseTicketTest):
         response = self.get_response_url_reverse_ticket_delete()
         template_path = self.templates_paths['delete']
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertTemplateUsed(response, template_path)
 
     def test_ticket_delete_view_post_without_confirm_does_not_delete(self):
@@ -44,7 +46,7 @@ class TicketViewsTest(BaseTicketTest):
         response_status_code = self.post_response_url_reverse_ticket_delete('cancel').status_code
         deleted_ticket_exists = Ticket.objects.filter(uuid=self.ticket.uuid).exists()
 
-        self.assertEqual(response_status_code, 200)
+        self.assertEqual(response_status_code, HTTPStatus.OK)
         self.assertTrue(deleted_ticket_exists)
 
 
@@ -59,7 +61,7 @@ class TicketViewsTest(BaseTicketTest):
             'delete_confirm'
         ).status_code
 
-        self.assertEqual(response_status_code, 302)
+        self.assertEqual(response_status_code, HTTPStatus.FOUND)
 
     def test_ticket_delete_view_returns_status_code_404_not_found_if_no_ticket(self):
         self.client_login()
@@ -68,7 +70,7 @@ class TicketViewsTest(BaseTicketTest):
             'delete_confirm'
         ).status_code
 
-        self.assertEqual(response_status_code, 404)
+        self.assertEqual(response_status_code, HTTPStatus.NOT_FOUND)
 
     def test_ticket_delete_view_loads_correct_template(self):
         response = self.get_response_url_reverse_ticket_delete()
@@ -82,7 +84,7 @@ class TicketViewsTest(BaseTicketTest):
         ).status_code
         deleted_ticket_exists = Ticket.objects.filter(uuid=self.ticket.uuid).exists()
 
-        self.assertEqual(response_status_code, 302)
+        self.assertEqual(response_status_code, HTTPStatus.FOUND)
         self.assertFalse(deleted_ticket_exists)
 
     def test_ticket_delete_template_loads_the_correct_ticket(self):

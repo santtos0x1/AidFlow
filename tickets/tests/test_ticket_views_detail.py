@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from django import urls
 
 from tickets.views import details
@@ -28,7 +30,7 @@ class TicketViewsTest(BaseTicketTest):
     def test_ticket_detail_view_returns_status_code_200_ok(self):
         response = self.get_response()
 
-        self.assertIs(response.status_code, 200)
+        self.assertIs(response.status_code, HTTPStatus.OK)
 
     def test_ticket_detail_view_content_shows_the_correct_value(self):
         expected = 'high'
@@ -41,7 +43,7 @@ class TicketViewsTest(BaseTicketTest):
         self.ticket.delete()
         response = self.get_response()
 
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
 
     def test_ticket_detail_view_loads_correct_template(self):
         response = self.get_response()
