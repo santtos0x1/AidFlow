@@ -6,6 +6,14 @@ from . import test_ticket_base as ttb
 class TicketsURLsTest(ttb.BaseTicketTest):
     BASE_URL = '/ticket/'
 
+    def reverse_result(self, view):
+        return reverse(
+            f'tickets:{view}',
+            kwargs = {
+                'uuid': self.ticket.uuid
+            }
+        )
+
     def test_ticket_get_started_url_is_correct(self):
         reverse_result = reverse('tickets:get-started')
         expected_result = '/'
@@ -27,41 +35,21 @@ class TicketsURLsTest(ttb.BaseTicketTest):
         self.assertEqual(reverse_result, expected_result)
 
     def test_ticket_detail_url_is_correct(self):
-        reverse_result = reverse(
-            'tickets:detail',
-            kwargs = {
-                'uuid': self.ticket.uuid
-            }
-        )
+        reverse_result = self.reverse_result('detail')
         expected_result = f'{self.BASE_URL}{self.ticket.uuid}/'
         self.assertEqual(reverse_result, expected_result)
 
     def test_ticket_edit_url_is_correct(self):
-        reverse_result = reverse(
-            'tickets:edit',
-            kwargs = {
-                'uuid': self.ticket.uuid
-            }
-        )
+        reverse_result = self.reverse_result('edit')
         expected_result = f'{self.BASE_URL}{self.ticket.uuid}/edit/'
         self.assertEqual(reverse_result, expected_result)
 
     def test_ticket_delete_url_is_correct(self):
-        reverse_result = reverse(
-            'tickets:delete',
-            kwargs = {
-                'uuid': self.ticket.uuid
-            }
-        )
+        reverse_result = self.reverse_result('delete')
         expected_result = f'{self.BASE_URL}{self.ticket.uuid}/delete/'
         self.assertEqual(reverse_result, expected_result)
 
     def test_ticket_reply_url_is_correct(self):
-        reverse_result = reverse(
-            'tickets:reply',
-            kwargs = {
-                'uuid': self.ticket.uuid
-            }
-        )
+        reverse_result = self.reverse_result('reply')
         expected_result = f'{self.BASE_URL}{self.ticket.uuid}/reply/'
         self.assertEqual(reverse_result, expected_result)

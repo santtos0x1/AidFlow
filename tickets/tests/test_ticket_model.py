@@ -31,6 +31,7 @@ class TicketModelTest(BaseTicketTest):
 
     def test_ticket_title_is_not_empty(self):
         ticket = self.make_ticket_no_defaults()
+
         self.assertNotEqual(
             ticket.title, '',
             msg='Ticket title is empty'
@@ -38,29 +39,32 @@ class TicketModelTest(BaseTicketTest):
 
     def test_ticket_description_is_not_empty(self):
         ticket = self.make_ticket_no_defaults()
+
         self.assertNotEqual(
             ticket.description, '',
             msg='Ticket description is empty'
         )
 
     def test_ticket_title_string_representation(self):
-        needed_str = 'New Title'
+        expected = 'New Title'
         self.ticket.title = 'New Title'
         self.ticket.full_clean()
         self.ticket.save()
+
         self.assertEqual(
-            str(self.ticket.title), needed_str,
+            str(self.ticket.title), expected,
             msg=f'Ticket string representation must be ticket '
-                f'"{needed_str}" but "{str(self.ticket.title)}" was received.'
+                f'"{expected}" but "{str(self.ticket.title)}" was received.'
         )
 
     def test_ticket_description_string_representation(self):
-        needed_str = 'New Description'
+        expected = 'New Description'
         self.ticket.description = 'New Description'
         self.ticket.full_clean()
         self.ticket.save()
+
         self.assertEqual(
-            str(self.ticket.description), needed_str,
+            str(self.ticket.description), expected,
             msg=f'Ticket string representation must be ticket '
-                f'"{needed_str}" but "{str(self.ticket.description)}" was received.'
+                f'"{expected}" but "{str(self.ticket.description)}" was received.'
         )

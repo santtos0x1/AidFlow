@@ -5,45 +5,64 @@ from .test_ticket_base import BaseTicketTest
 
 
 class TicketViewsTest(BaseTicketTest):
+    def url_reverse_ticket_search(self, q=''):
+        return urls.reverse('tickets:search') + q
+
+    def get_response_url_reverse_ticket_search(self, q):
+        return self.client.get(self.url_reverse_ticket_search(q))
+
     def test_ticket_search_view_function_is_correct(self):
         view_function = urls.resolve(
-            urls.reverse('tickets:search')
+            self.url_reverse_ticket_search()
         ).func
+
         self.assertIs(view_function, search_ticket)
 
     def test_ticket_search_view_returns_status_code_200_ok(self):
-        url = urls.reverse('tickets:search') + '?q=test'
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+        response_status_code = self.get_response_url_reverse_ticket_search(
+            '?q=test'
+        ).status_code
+
+        self.assertEqual(response_status_code, 200)
 
     def test_ticket_search_view_content_shows_the_correct_value(self):
-        url = urls.reverse('tickets:search') + '?q=test'
-        response = self.client.get(url)
+        expected ='input-site-search'
+        response = self.client.get()
         content = response.content.decode('utf-8')
-        self.assertIn('input-site-search', content)
+
+        self.assertIn(expected, content)
 
     def test_ticket_search_view_loads_correct_template(self):
-        url = urls.reverse('tickets:search') + '?q=test'
-        response = self.client.get(url)
-        self.assertTemplateUsed(response, self.templates_paths['search'])
+        response = self.get_response_url_reverse_ticket_search('?q=test')
+        template_path = self.templates_paths['search']
+
+        self.assertTemplateUsed(response, template_path)
 
     def test_ticket_search_template_loads_the_correct_ticket(self):
         title = self.ticket.title
-        url = urls.reverse('tickets:search') + '?q=test'
-        response = self.client.get(url)
+        response = self.get_response_url_reverse_ticket_search('?q=test')
         content = response.content.decode('utf-8')
+
         self.assertIn(title, content)
 
     def test_ticket_search_loads_the_correct_context(self):
-        url = urls.reverse('tickets:search') + '?q=test'
-        response = self.client.get(url)
-        self.assertIn('tickets', response.context)
-        self.assertIn(self.ticket, response.context['tickets'])
+        ticket = self.ticket
+        expected = 'tickets'
+        response_tickets_context = self.get_response_url_reverse_ticket_search(
+            '?q=test'
+        ).context['tickets']
+        response_context = self.get_response_url_reverse_ticket_search(
+            '?q=test'
+        ).context
+
+        self.assertIn(expected, response_context)
+        self.assertIn(ticket, response_tickets_context)
 
     def test_ticket_search_is_on_page_and_escaped(self):
-        url = urls.reverse('tickets:search') + '?q=<script></script>'
-        response = self.client.get(url)
-        self.assertIn(
-            'Results for "&lt;script&gt;&lt;/script&gt;"',
-            response.content.decode('utf-8')
+        expected = 'Results for "&lt;script&gt;&lt;/script&gt;"'
+        response = self.get_response_url_reverse_ticket_search(
+            '?q=<script></script>'
         )
+        content = response.content.decode('utf-8')
+
+        self.assertIn(expected, content)

@@ -10,34 +10,32 @@ logger = getLogger(__name__)
 
 
 class TicketViewsTest(BaseTicketTest):
-    def response(self, method):
-        try:
-            if method == 'post':
-                RESPONSE = self.client.post(
-                    urls.reverse(
-                        'tickets:reply',
-                        kwargs = {
-                            'uuid': self.ticket.uuid
-                        }
-                    ),
-                    data = {
-                        'solution': self.ticket.solution
-                    }
-                )
-                return RESPONSE
-            if method == 'get':
-                RESPONSE = self.client.get(
-                    urls.reverse(
+    def client_login(self):
+        self.client.login(
+            username = self.user.username,
+            password = '123'
+        )
+
+    def url_reverse_ticket_reply(self):
+        return urls.reverse(
                         'tickets:reply',
                         kwargs = {
                             'uuid': self.ticket.uuid
                         }
                     )
-                )
-                return RESPONSE
-        except Exception as err:
-            logger.exception(f'Unexpected error while getting response: {err}')
 
+    def post_response_url_reverse_ticket_reply(self):
+        return self.client.post(
+                    self.url_reverse_ticket_reply(),
+                    data = {
+                        'solution': self.ticket.solution
+                    }
+               )
+
+    def get_response_url_reverse_ticket_reply(self):
+        return self.client.get(
+            self.url_reverse_ticket_reply()
+               )
 
     def test_ticket_reply_view_function_is_correct(self):
         view_function = urls.resolve(
@@ -48,36 +46,42 @@ class TicketViewsTest(BaseTicketTest):
                 }
             )
         ).func
+
         self.assertIs(view_function, reply_ticket)
 
     def test_ticket_reply_view_returns_status_code_200_ok(self):
-        self.client.login(
-            username=self.user.username,
-            password='123'
-        )
-        self.assertEqual(self.response(method='post').status_code, 302)
+        self.client_login()
+        response_status_code = self.post_response_url_reverse_ticket_reply().status_code
+
+        self.assertEqual(response_status_code, 302)
 
     def test_ticket_reply_view_returns_status_code_404_not_found_if_no_ticket(self):
-        self.client.login(
-            username=self.user.username,
-            password='123'
-        )
+        self.client_login()
         self.ticket.delete()
-        self.assertEqual(self.response(method='post').status_code, 404)
+        response_status_code = self.post_response_url_reverse_ticket_reply().status_code
+
+        self.assertEqual(response_status_code, 404)
 
     def test_ticket_reply_view_content_shows_the_correct_value(self):
-        content = self.response(method='get').content.decode('utf-8')
-        self.assertIn('Test', content)
+        expected = 'Test'
+        content = self.get_response_url_reverse_ticket_reply().content.decode('utf-8')
 
+        self.assertIn(expected, content)
 
     def test_ticket_reply_view_loads_correct_template(self):
-        self.assertTemplateUsed(self.response(method='get'), self.templates_paths['reply'])
+        response = self.get_response_url_reverse_ticket_reply()
+        template_path = self.templates_paths['reply']
+
+        self.assertTemplateUsed(response, template_path)
 
     def test_ticket_reply_template_loads_the_correct_ticket(self):
         title = self.ticket.title
-        content = self.response(method='get').content.decode('utf-8')
+        content = self.get_response_url_reverse_ticket_reply().content.decode('utf-8')
+
         self.assertIn(title, content)
 
     def test_ticket_reply_loads_the_correct_context(self):
-        self.assertIn('ticket', self.response(method='get').context)
-        self.assertIn('form', self.response(method='get').context)
+        expected = 'form'
+        response_context = self.get_response_url_reverse_ticket_reply().context
+
+        self.assertIn(expected, response_context)
