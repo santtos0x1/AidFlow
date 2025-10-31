@@ -27,7 +27,7 @@ class TicketViewsTest(BaseTicketTest):
 
     def test_ticket_search_view_content_shows_the_correct_value(self):
         expected ='input-site-search'
-        response = self.client.get()
+        response = self.get_response_url_reverse_ticket_search('?q=test')
         content = response.content.decode('utf-8')
 
         self.assertIn(expected, content)

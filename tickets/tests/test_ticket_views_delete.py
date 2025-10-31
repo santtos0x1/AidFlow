@@ -73,7 +73,7 @@ class TicketViewsTest(BaseTicketTest):
     def test_ticket_delete_view_loads_correct_template(self):
         response = self.get_response_url_reverse_ticket_delete()
         template_path = self.templates_paths['delete']
-        
+
         self.assertTemplateUsed(response, template_path)
 
     def test_ticket_delete_view_removes_from_database(self):
@@ -87,7 +87,7 @@ class TicketViewsTest(BaseTicketTest):
 
     def test_ticket_delete_template_loads_the_correct_ticket(self):
         title = self.ticket.title
-        response = self.post_response_url_reverse_ticket_delete('delete_confirm')
+        response = self.get_response_url_reverse_ticket_delete()
         content = response.content.decode('utf-8')
 
         self.assertIn(title, content)
